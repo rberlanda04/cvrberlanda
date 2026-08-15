@@ -1,0 +1,533 @@
+{
+  "site": {
+    "productName": "Portfolio.Edu",
+    "note": "Estrutura de currículo web replicável. Para reaproveitar como produto para outra pessoa, basta substituir os valores deste arquivo — nenhum outro arquivo precisa ser editado."
+  },
+  "profile": {
+    "name": "Rogerio H. Berlanda",
+    "role": "Professor & Consultor em Tecnologias Educacionais ",
+    "tagline": "Transformando a educação, através da tecnologia.      — Levando cultura maker, robótica e inovação para dentro da sala de aula. ",
+    "location": "Curitiba, PR — Brasil",
+    "initials": "RB",
+    "photo": "assets/logos/fotoperfil.jpg",
+    "brandLogo": "assets/logos/logo.png",
+    "emails": [
+      {
+        "label": "Izicode Edu",
+        "address": "izicodeedu@gmail.com",
+        "logo": "assets/logos/tool-gmail.svg"
+      }
+    ],
+    "social": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/rogerio-berlanda-643b45161",
+        "logo": "assets/logos/tool-linkedin.png"
+      },
+      {
+        "label": "Instagram",
+        "url": "",
+        "logo": "assets/logos/tool-instagram.svg"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/rberlanda04",
+        "logo": "assets/logos/tool-github.svg"
+      }
+    ]
+  },
+  "about": {
+    "heading": "Sobre",
+    "paragraphs": [
+      "Sou professor de Robótica e atuo hoje em duas escolas da Rede Marista Brasil: a Escola Social Marista Ecológica e o Colégio Marista Anjo da Guarda. Meu trabalho é mostrar, todos os dias, o que acontece dentro da sala de aula — projetos de robótica, programação e cultura maker feitos pelos próprios estudantes.",
+      "Antes de chegar à robótica escolar, construí um caminho em tecnologia e inovação: desenvolvi projetos próprios de web e produto, atuei com consultoria e educação, blockchain e criptoativos, e produzi material didático sobre lógica de programação, arquitetura de computadores, sistemas operacionais, segurança digital e e-business.",
+      "Esse percurso deu origem à Izicode Edu, minha iniciativa para levar cultura maker, STEAM e robótica — integradas à BNCC — para escolas, através de laboratórios maker, formação de professores e preparação de estudantes para olimpíadas científicas e hackathons."
+    ]
+  },
+  "currentRoles": {
+    "heading": "Onde estou trabalhando",
+    "items": [
+      {
+        "title": "Professor Mentor de projetos",
+        "org": "Colégio Marista Anjo da Guarda",
+        "logo": "assets/logos/colegiomaristaanjodaguarda.jpg",
+        "fallbackLogo": "assets/logos/maristabr.avif"
+      },
+      {
+        "title": "Professor Laboratório de ideas",
+        "org": "Escola Social Marista Ecológica",
+        "logo": "assets/logos/maristaescolassociais.jpg",
+        "fallbackLogo": "assets/logos/maristabr.avif"
+      },
+      {
+        "title": "Fundador",
+        "org": "Izicode Edu",
+        "logo": "assets/logos/izicode.png"
+      }
+    ]
+  },
+  "competitions": {
+    "heading": "Olimpíadas, competições e eventos",
+    "intro": "Projetos de estudantes mentorados em olimpíadas científicas, hackathons e eventos maker ao longo dos últimos anos.",
+    "items": [
+      {
+        "acronym": "OBT",
+        "description": "Olimpíada Brasileira de Tecnologia",
+        "logo": "assets/logos/obt.png"
+      },
+      {
+        "acronym": "OBES",
+        "description": "Olimpíada Brasileira de Empreendedorismo Social",
+        "logo": "assets/logos/obes.jpg"
+      },
+      {
+        "acronym": "OBA",
+        "description": "Olimpíada Brasileira de Astronomia e Astronáutica",
+        "logo": "assets/logos/oba.png"
+      },
+      {
+        "acronym": "OBAFOG",
+        "description": "Olimpíada Brasileira de Foguetes",
+        "logo": "assets/logos/obafog-badge.jpg"
+      },
+      {
+        "acronym": "OBR",
+        "description": "Olimpíada Brasileira de Robótica",
+        "logo": "assets/logos/obr.png"
+      },
+      {
+        "acronym": "FMR",
+        "description": "Festival Marista de Robótica",
+        "logo": "assets/logos/fmr.jpg"
+      },
+      {
+        "acronym": "FCPUCPR",
+        "description": "Festival de Ciências PUCPR",
+        "logo": "assets/logos/fcpucpr.png"
+      },
+      {
+        "acronym": "PROGRAMAR",
+        "description": "Hackathon Programar",
+        "logo": "assets/logos/programar.jpg"
+      },
+      {
+        "acronym": "Eventos Maker",
+        "description": "Feiras e mostras de cultura maker.",
+        "logo": "assets/logos/maker.png"
+      }
+    ],
+    "footnote": "Nomes oficiais e edições específicas podem ser detalhados por olimpíada — espaço reservado para ajuste fino."
+  },
+  "githubAccounts": {
+    "heading": "Código aberto",
+    "intro": "Repositórios públicos organizados por fase e frente de trabalho.",
+    "items": [
+      {
+        "label": "rberlanda01",
+        "description": "",
+        "url": "https://github.com/rberlanda01",
+        "logo": "assets/logos/github-rberlanda01.png"
+      },
+      {
+        "label": "izicripto",
+        "description": "",
+        "url": "https://github.com/izicripto",
+        "logo": "assets/logos/github-izicripto.png"
+      },
+      {
+        "label": "dbmox",
+        "description": "",
+        "url": "https://github.com/dbmox",
+        "logo": "assets/logos/github-dbmox.png"
+      },
+      {
+        "label": "rberlanda04",
+        "description": "",
+        "url": "https://github.com/rberlanda04",
+        "logo": "assets/logos/github-rberlanda04.png"
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Áreas de atuação",
+    "groups": [
+      {
+        "title": "Robótica & Maker",
+        "items": [
+          "Cultura Maker",
+          "STEAM",
+          "PBL",
+          "Pensamento Computacional"
+        ]
+      },
+      {
+        "title": "Educação & Currículo",
+        "items": [
+          "BNCC",
+          "Formação de professores",
+          "Gamificação",
+          "Lógica de programação",
+          "Preparação para olimpíadas",
+          "RPG"
+        ]
+      },
+      {
+        "title": "Tecnologia & Inovação",
+        "items": [
+          "IA",
+          "Blockchain",
+          "Criptoativos",
+          "Segurança Digital",
+          "Arquitetura de Computadores",
+          "Sistemas Operacionais",
+          "E-Business",
+          "Startup Thinking"
+        ]
+      }
+    ]
+  },
+  "techStack": {
+    "heading": "Tecnologias & Ferramentas",
+    "intro": "As ferramentas por trás dos projetos de sala de aula e dos produtos em desenvolvimento.",
+    "groups": [
+      {
+        "title": "Hardware",
+        "items": [
+          {
+            "label": "Arduino",
+            "logo": "assets/logos/arduino.png"
+          },
+          {
+            "label": "Micro:bit",
+            "logo": "assets/logos/microbit.png"
+          },
+          {
+            "label": "Raspberry Pi",
+            "logo": "assets/logos/raspberrypi.png"
+          },
+          {
+            "label": "LEGO EV3",
+            "logo": "assets/logos/ev3.png"
+          },
+          {
+            "label": "LEGO WeDo 2.0",
+            "logo": "assets/logos/wedo2.png"
+          },
+          {
+            "label": "Bambu Lab",
+            "logo": "assets/logos/bambulab.png"
+          },
+          {
+            "label": "Due",
+            "logo": "assets/logos/due.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Software",
+        "items": [
+          {
+            "label": "Scratch",
+            "logo": "assets/logos/scratch.png"
+          },
+          {
+            "label": "Tinkercad",
+            "logo": "assets/logos/tinkercad.jpg"
+          },
+          {
+            "label": "Open Roberta",
+            "logo": "assets/logos/openroberta.png"
+          },
+          {
+            "label": "App Inventor",
+            "logo": "assets/logos/appinv.png"
+          },
+          {
+            "label": "Code.org",
+            "logo": "assets/logos/code.png"
+          },
+          {
+            "label": "Python",
+            "logo": "assets/logos/python.jpg"
+          },
+          {
+            "label": "Node.js",
+            "logo": "assets/logos/tool-nodedotjs.svg"
+          },
+          {
+            "label": "TypeScript",
+            "logo": "assets/logos/tool-typescript.svg"
+          },
+          {
+            "label": "Next.js",
+            "logo": "assets/logos/tool-nextdotjs.svg"
+          },
+          {
+            "label": "TailwindCSS",
+            "logo": "assets/logos/tool-tailwindcss.svg"
+          },
+          {
+            "label": "HTML5",
+            "logo": "assets/logos/tool-html5.svg"
+          },
+          {
+            "label": "Firebase",
+            "logo": "assets/logos/tool-firebase.svg"
+          },
+          {
+            "label": "GitHub",
+            "logo": "assets/logos/tool-github.svg"
+          },
+          {
+            "label": "Vercel",
+            "logo": "assets/logos/tool-vercel.svg"
+          },
+          {
+            "label": "Canva",
+            "logo": "assets/logos/canva.jpg"
+          },
+          {
+            "label": "Office 365",
+            "logo": "assets/logos/office365.png"
+          },
+          {
+            "label": "Minecraft Education",
+            "logo": "assets/logos/minecrafteducation.png"
+          }
+        ]
+      },
+      {
+        "title": "IA",
+        "items": [
+          {
+            "label": "Claude",
+            "logo": "assets/logos/tool-claude.svg"
+          },
+          {
+            "label": "Google Gemini",
+            "logo": "assets/logos/tool-googlegemini.svg"
+          },
+          {
+            "label": "Google AI Studio",
+            "logo": "assets/logos/tool-googleaistudio.png"
+          },
+          {
+            "label": "NotebookLM",
+            "logo": "assets/logos/tool-notebooklm.svg"
+          },
+          {
+            "label": "Lovable",
+            "logo": "assets/logos/tool-lovable.png"
+          },
+          {
+            "label": "Antigravity",
+            "logo": "assets/logos/antigravity.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  "partners": {
+    "heading": "Parceiros & Alinhamento",
+    "intro": "Diretrizes e redes que orientam o trabalho em sala de aula.",
+    "items": [
+      {
+        "label": "BNCC",
+        "logo": "assets/logos/bncc.png"
+      },
+      {
+        "label": "ODS",
+        "logo": "assets/logos/ods.jpg"
+      },
+      {
+        "label": "CERT.br",
+        "logo": "assets/logos/cert-logo.svg"
+      }
+    ]
+  },
+  "timeline": {
+    "heading": "Linha do tempo — Portfólio",
+    "intro": "Da web pessoal aos projetos atuais em sala de aula: a sequência de trabalhos, produtos e materiais que constroem esse percurso.",
+    "items": [
+      {
+        "era": "Atual",
+        "title": "Izicode Maker RPG",
+        "org": "izicodeedurpg.vercel.app",
+        "type": "Produto atual",
+        "description": "Plataforma educacional STEAM gamificada, com mecânicas de RPG (progressão, missões e recompensas) para engajar estudantes em ciência, tecnologia, engenharia, artes e matemática.",
+        "url": "https://izicodeedurpg.vercel.app",
+        "logo": "assets/logos/izicode.png"
+      },
+      {
+        "era": "Atual",
+        "title": "Beerlanda",
+        "org": "beerlanda.web.app",
+        "type": "Projeto pessoal",
+        "description": "Marca de sabonetes, bálsamos e velas artesanais naturais — catálogo de produtos de cuidado pessoal e ambientação feitos à mão.",
+        "url": "https://beerlanda.web.app/",
+        "logo": "assets/logos/beerlanda.png"
+      },
+      {
+        "era": "Atual",
+        "title": "WiW Speak (Learnfreehands)",
+        "org": "GitHub · rberlanda04/Learnfreehands",
+        "type": "Projeto open source",
+        "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade.",
+        "url": "https://learnfreehands.vercel.app",
+        "logo": "assets/logos/wiwspeak.png"
+      },
+      {
+        "era": "Atual",
+        "title": "Dpoint — Ponto de Campo",
+        "org": "GitHub · rberlanda04/dpoint",
+        "type": "Produto atual",
+        "description": "Sistema de registro de ponto para equipes em campo — manutenção, entregas, inspeção e consultoria fora do escritório.",
+        "url": "https://dpoint-d138c.web.app/",
+        "logo": "assets/logos/dpoint.png"
+      },
+      {
+        "era": "Atual",
+        "title": "Izicode Edu",
+        "org": "izicodeedu-532ac.web.app",
+        "type": "Produto atual",
+        "description": "Robótica e inovação para escolas: cultura maker, STEAM e robótica integradas à BNCC, laboratórios maker e formação docente.",
+        "url": "https://izicodeedu-532ac.web.app/",
+        "logo": "assets/logos/izicode.png"
+      },
+      {
+        "era": "Robótica na Rede Marista",
+        "title": "Currículo atualizado",
+        "org": "Gamma",
+        "type": "Currículo",
+        "description": "Currículo atual: professor de robótica na Rede Marista Brasil, com trajetória em tecnologia e inovação.",
+        "url": "https://gamma.app/docs/Rogerio-H-Berlanda-iziqo24keh3fi98",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Materiais didáticos",
+        "title": "Startup Thinking — Inovando para um Futuro Sustentável",
+        "org": "Gamma",
+        "type": "Material didático",
+        "description": "Material sobre pensamento de startup aplicado à inovação sustentável.",
+        "url": "https://gamma.app/docs/Startup-Thinking-Inovando-para-um-Futuro-Sustentavel-duyavx13wz1py5k",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Materiais didáticos",
+        "title": "Lógica de Programação em Salas de Aula",
+        "org": "Gamma",
+        "type": "Material didático",
+        "description": "Metodologia e exemplos de ensino de lógica de programação em sala de aula.",
+        "url": "https://gamma.app/docs/Logica-de-programacao-em-salas-de-aulas-7hsoz149ey0kvz5",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Materiais didáticos",
+        "title": "E-Business: Conceitos, História e Diferenças",
+        "org": "Gamma",
+        "type": "Material didático",
+        "description": "Conteúdo de sala de aula sobre e-business.",
+        "url": "https://gamma.app/docs/E-Business-Conceitos-Historia-e-Diferencas-tvf8oa0aqxc7oq4",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Materiais didáticos",
+        "title": "Sistemas Operacionais",
+        "org": "Gamma",
+        "type": "Material didático",
+        "description": "Conteúdo de sala de aula sobre sistemas operacionais.",
+        "url": "https://gamma.app/docs/Sistemas-Operacionais-09ansch7xjkpzs8",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Materiais didáticos",
+        "title": "Arquitetura dos Computadores",
+        "org": "Gamma",
+        "type": "Material didático",
+        "description": "Conteúdo de sala de aula sobre arquitetura de computadores.",
+        "url": "https://gamma.app/docs/Arquitetura-dos-computadores-9ti70ozf8er9vfs",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Educação em blockchain",
+        "title": "Segurança Digital",
+        "org": "Gamma",
+        "type": "Apresentação",
+        "description": "Material didático sobre segurança digital.",
+        "url": "https://gamma.app/docs/Seguranca-Digital-vwy3k8wz6l7aizo",
+        "logo": "assets/logos/gamma.jpg"
+      },
+      {
+        "era": "Educação em blockchain",
+        "title": "Comunidade IZICRIPTO — Blockchain, NFTs e DeFi",
+        "org": "Gamma",
+        "type": "Apresentação",
+        "description": "Material sobre a comunidade IziCripto: blockchain, NFTs, DeFi e educação em criptoativos.",
+        "url": "https://gamma.app/docs/Comunidade-IZICRIPTO-Aprenda-Blockchain-NFTs-DeFi-e-Mais-dyghf5ppti0p1c0",
+        "logo": "assets/logos/github-izicripto.png"
+      },
+      {
+        "era": "Educação em blockchain",
+        "title": "IziCripto",
+        "org": "izicripto.surge.sh",
+        "type": "Projeto pessoal",
+        "description": "Plataforma de educação em blockchain e criptoativos, com consultoria, workshops e curso introdutório.",
+        "url": "https://izicripto.surge.sh/",
+        "logo": "assets/logos/github-izicripto.png"
+      },
+      {
+        "era": "Primeiros projetos",
+        "title": "Dropefly",
+        "org": "dropefly.surge.sh",
+        "type": "Projeto pessoal",
+        "description": "Projeto para viajantes que documentam suas jornadas através de imagens aéreas capturadas por drones.",
+        "url": "https://dropefly.surge.sh/",
+        "logo": "assets/logos/dropefly.png"
+      },
+      {
+        "era": "Primeiros projetos",
+        "title": "Currículo & portfólio pessoal",
+        "org": "rberlanda.surge.sh",
+        "type": "Projeto pessoal",
+        "description": "Primeira versão do currículo online, com experiência profissional, skills técnicas e certificações.",
+        "url": "https://rberlanda.surge.sh/",
+        "logo": "assets/logos/logo.png"
+      }
+    ]
+  },
+  "mentoredProjects": {
+    "heading": "Projetos mentorados",
+    "intro": "Projetos de estudantes mentorados em sala de aula — fotos, vídeos e descrições podem ser adicionados aqui conforme forem documentados.",
+    "statsLabel": "Números de 2026",
+    "stats": [
+      {
+        "count": "17+",
+        "label": "Turmas"
+      },
+      {
+        "count": "410+",
+        "label": "Alunos"
+      },
+      {
+        "count": "53+",
+        "label": "Equipes"
+      },
+      {
+        "count": "37+",
+        "label": "Projetos"
+      }
+    ],
+    "items": [
+      {
+        "title": "WiW Speak — Learnfreehands",
+        "event": "Projeto próprio de acessibilidade",
+        "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade (HealthTech/EdTech).",
+        "logo": "assets/logos/wiwspeak.png",
+        "url": "https://learnfreehands.vercel.app"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Contato"
+  }
+}
