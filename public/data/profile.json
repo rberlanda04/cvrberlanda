@@ -224,7 +224,7 @@
         ]
       },
       {
-        "title": "Software",
+        "title": "Software Educacional",
         "items": [
           {
             "label": "Scratch",
@@ -246,6 +246,15 @@
             "label": "Code.org",
             "logo": "assets/logos/code.png"
           },
+          {
+            "label": "Minecraft Education",
+            "logo": "assets/logos/minecrafteducation.png"
+          }
+        ]
+      },
+      {
+        "title": "Software Profissional",
+        "items": [
           {
             "label": "Python",
             "logo": "assets/logos/python.jpg"
@@ -289,10 +298,6 @@
           {
             "label": "Office 365",
             "logo": "assets/logos/office365.png"
-          },
-          {
-            "label": "Minecraft Education",
-            "logo": "assets/logos/minecrafteducation.png"
           }
         ]
       },
