@@ -185,8 +185,6 @@ function renderRoles(data) {
 }
 
 function renderGithubAccounts(data) {
-  setText("github-heading", data.githubAccounts.heading);
-  setText("github-intro", data.githubAccounts.intro);
   const grid = document.getElementById("github-grid");
   grid.innerHTML = "";
   data.githubAccounts.items.forEach((account) => {
@@ -216,7 +214,7 @@ function renderTechStack(data) {
     const grid = el("div", "tech-grid");
     group.items.forEach((tool) => {
       const tile = el("div", "tech-tile");
-      tile.appendChild(createLogoBadge({ logo: tool.logo, label: tool.label, size: 56 }));
+      tile.appendChild(createLogoBadge({ logo: tool.logo, label: tool.label, size: 64 }));
       tile.appendChild(el("p", "tech-label", tool.label));
       grid.appendChild(tile);
     });
@@ -352,6 +350,16 @@ function setupTimelineExpand() {
   });
 }
 
+function setupGithubToggle() {
+  const btn = document.getElementById("github-toggle");
+  const panel = document.getElementById("github-panel");
+  btn.addEventListener("click", () => {
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    panel.style.maxHeight = isOpen ? "0px" : `${panel.scrollHeight}px`;
+  });
+}
+
 function renderCompetitions(data) {
   setText("competitions-heading", data.competitions.heading);
   setText("competitions-intro", data.competitions.intro);
@@ -471,7 +479,7 @@ function renderPartners(data) {
   grid.innerHTML = "";
   data.partners.items.forEach((partner) => {
     const tile = el("div", "tech-tile");
-    tile.appendChild(createLogoBadge({ logo: partner.logo, label: partner.label, size: 56 }));
+    tile.appendChild(createLogoBadge({ logo: partner.logo, label: partner.label, size: 64 }));
     tile.appendChild(el("p", "tech-label", partner.label));
     grid.appendChild(tile);
   });
@@ -515,73 +523,6 @@ function setupThemeToggle() {
   });
 }
 
-function setupNavToggle() {
-  const toggle = document.getElementById("nav-toggle");
-  const links = document.getElementById("nav-links");
-  toggle.addEventListener("click", () => {
-    const isOpen = links.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-  });
-  links.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    })
-  );
-}
-
-// Os menus "Trabalho" e "Portfólio" abrem no hover (CSS) e também no clique/toque
-// (fallback para telas sem hover) ou navegação por teclado.
-function setupDropdowns() {
-  const dropdowns = Array.from(document.querySelectorAll(".has-dropdown"));
-
-  const closeAll = (except) => {
-    dropdowns.forEach((dropdown) => {
-      if (dropdown === except) return;
-      dropdown.classList.remove("dropdown-open");
-      dropdown.querySelector(".nav-dropdown-trigger").setAttribute("aria-expanded", "false");
-    });
-  };
-
-  dropdowns.forEach((dropdown) => {
-    const trigger = dropdown.querySelector(".nav-dropdown-trigger");
-    trigger.addEventListener("click", () => {
-      const isOpen = dropdown.classList.toggle("dropdown-open");
-      trigger.setAttribute("aria-expanded", String(isOpen));
-      closeAll(dropdown);
-    });
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".has-dropdown")) closeAll();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeAll();
-  });
-}
-
-// Destaca no menu o link da seção que está visível na tela.
-function setupScrollSpy() {
-  const links = Array.from(document.querySelectorAll("[data-nav-link]"));
-  if (!links.length) return;
-  const sections = links
-    .map((a) => document.querySelector(a.getAttribute("href")))
-    .filter(Boolean);
-
-  const setActive = (id) => {
-    links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === `#${id}`));
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries.filter((e) => e.isIntersecting);
-      if (visible.length) setActive(visible[0].target.id);
-    },
-    { rootMargin: "-45% 0px -50% 0px" }
-  );
-  sections.forEach((section) => observer.observe(section));
-}
-
 // Seções aparecem suavemente ao entrar na tela ao rolar a página.
 function setupRevealAnimations() {
   const sections = document.querySelectorAll("#conteudo > section:not(.hero)");
@@ -602,9 +543,7 @@ function setupRevealAnimations() {
 }
 
 setupThemeToggle();
-setupNavToggle();
-setupDropdowns();
-setupScrollSpy();
 setupRevealAnimations();
 setupTimelineExpand();
+setupGithubToggle();
 init();

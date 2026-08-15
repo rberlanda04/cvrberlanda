@@ -26,43 +26,6 @@
         <span class="brand-name" id="nav-name">Carregando…</span>
       </a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#sobre" data-nav-link>Sobre</a></li>
-        <li class="has-dropdown">
-          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            Trabalho
-            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="nav-dropdown">
-            <ul class="nav-dropdown-panel">
-              <li><a href="#experiencia" data-nav-link>Onde estou trabalhando</a></li>
-              <li><a href="#skills" data-nav-link>Áreas de atuação</a></li>
-              <li><a href="#tecnologias" data-nav-link>Tecnologias & Ferramentas</a></li>
-              <li><a href="#parceiros" data-nav-link>Parceiros & Alinhamento</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="has-dropdown">
-          <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-            Portfólio
-            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="nav-dropdown">
-            <ul class="nav-dropdown-panel">
-              <li><a href="#portfolio" data-nav-link>Linha do tempo</a></li>
-              <li><a href="#competicoes" data-nav-link>Competições</a></li>
-              <li><a href="#codigo-aberto" data-nav-link>Código aberto</a></li>
-              <li><a href="#mentorados" data-nav-link>Projetos mentorados</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a href="#contato" data-nav-link>Contato</a></li>
-      </ul>
-
       <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
         <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
         <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
@@ -157,9 +120,13 @@
     <!-- CÓDIGO ABERTO -->
     <section class="section section-alt" id="codigo-aberto">
       <div class="container">
-        <h2 class="section-title" id="github-heading">Código aberto</h2>
-        <p class="section-intro" id="github-intro"></p>
-        <ul class="chip-grid" id="github-grid"></ul>
+        <button class="github-toggle" id="github-toggle" aria-expanded="false" aria-controls="github-panel" aria-label="Código aberto — ver repositórios">
+          <img class="github-toggle-logo" src="assets/logos/tool-github.svg" alt="Código aberto" />
+          <svg class="chevron github-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="github-panel" id="github-panel">
+          <ul class="chip-grid" id="github-grid"></ul>
+        </div>
       </div>
     </section>
 
@@ -177,7 +144,6 @@
     <!-- CONTATO -->
     <section class="section section-alt" id="contato">
       <div class="container contact-grid">
-        <h2 class="section-title" id="contact-heading">Contato</h2>
         <ul class="contact-icons" id="contact-icons"></ul>
         <p class="contact-location" id="contact-location"></p>
       </div>

@@ -137,125 +137,6 @@ h1, h2, h3, p { margin: 0; }
   background: var(--surface);
   padding: 3px;
 }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.6rem;
-}
-.nav-links a {
-  text-decoration: none;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  transition: color 0.15s ease;
-}
-.nav-links a:hover,
-.nav-links a.is-active { color: var(--color-primary); }
-
-/* Dropdowns — abrem ao passar o mouse (e por foco/teclado) */
-.has-dropdown { position: relative; }
-.nav-dropdown-trigger {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: none;
-  border: none;
-  font: inherit;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0.4rem 0;
-  transition: color 0.15s ease;
-}
-.nav-dropdown-trigger:hover { color: var(--color-primary); }
-.chevron {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform 0.2s ease;
-}
-.has-dropdown:hover .chevron,
-.has-dropdown:focus-within .chevron { transform: rotate(180deg); }
-
-.nav-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  /* padding-top cria o "respiro" visual sem abrir um vão fora do elemento,
-     senão o hover se perde ao mover o mouse do gatilho até o menu. */
-  padding-top: 0.65rem;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.18s ease, visibility 0.18s;
-  z-index: 50;
-}
-.has-dropdown:hover .nav-dropdown,
-.has-dropdown:focus-within .nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.nav-dropdown-panel {
-  min-width: 230px;
-  background: var(--surface);
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  padding: 0.25rem;
-  transform: translateY(-6px) scale(0.97);
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.has-dropdown:hover .nav-dropdown-panel,
-.has-dropdown:focus-within .nav-dropdown-panel,
-.has-dropdown.dropdown-open .nav-dropdown-panel {
-  transform: translateY(0) scale(1);
-}
-.nav-dropdown-panel a {
-  display: block;
-  padding: 0.55rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  white-space: nowrap;
-  color: var(--text);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-.nav-dropdown-panel a:hover {
-  background: var(--bg-alt);
-  color: var(--color-primary);
-}
-/* Fallback por clique (telas touch, onde não existe :hover) */
-.has-dropdown.dropdown-open .nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.has-dropdown.dropdown-open .chevron { transform: rotate(180deg); }
-
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  cursor: pointer;
-}
-.nav-toggle span {
-  display: block;
-  height: 2px;
-  margin-inline: 8px;
-  background: var(--text);
-  border-radius: 2px;
-}
-
 .theme-toggle {
   position: relative;
   display: grid;
@@ -340,20 +221,20 @@ h1, h2, h3, p { margin: 0; }
   font-weight: 500;
   font-size: 0.875rem;
   text-decoration: none;
-  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-primary {
   background: var(--color-primary);
   color: var(--text-on-primary);
   border: 1px solid transparent;
 }
-.btn-primary:hover { background: var(--color-primary-strong); }
+.btn-primary:hover { background: var(--color-primary-strong); box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .btn-ghost {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--surface-border);
 }
-.btn-ghost:hover { background: var(--bg-alt); }
+.btn-ghost:hover { background: var(--bg-alt); border-color: var(--color-primary); transform: translateY(-2px); }
 
 .hero-avatar {
   position: relative;
@@ -399,10 +280,10 @@ h1, h2, h3, p { margin: 0; }
 /* Feedback tátil de clique nos elementos interativos */
 .btn:active,
 .theme-toggle:active,
-.nav-toggle:active,
 .timeline-expand:active,
 .contact-icon-link:active,
-.nav-dropdown-trigger:active {
+.github-toggle:active,
+.skill-group-header:active {
   transform: scale(0.96);
 }
 
@@ -467,9 +348,13 @@ button:focus-visible {
   border-radius: var(--radius-md);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.card:hover { border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border)); }
+.card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
 .card-period {
   font-size: 0.78rem;
   font-weight: 700;
@@ -646,9 +531,13 @@ button:focus-visible {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.tech-tile:hover { border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border)); }
+.tech-tile:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
 .tech-tile:hover .logo-img,
 .chip-featured:hover .logo-img { transform: scale(1.08); }
 .tech-label {
@@ -848,7 +737,14 @@ button:focus-visible {
   border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
+.timeline-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.timeline-card:hover .logo-img { transform: scale(1.08); }
 .timeline-header {
   display: flex;
   align-items: flex-start;
@@ -901,6 +797,56 @@ button:focus-visible {
 }
 
 /* =========================================================
+   Código aberto — logo do GitHub como gatilho de um collapse
+   ========================================================= */
+.github-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-inline: auto;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.github-toggle-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.github-toggle:hover .github-toggle-logo {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+.github-toggle-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+.github-toggle[aria-expanded="true"] .github-toggle-chevron { transform: rotate(180deg); }
+.github-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.github-panel .chip-grid { padding-top: 1.5rem; }
+
+/* =========================================================
    Competitions chips
    ========================================================= */
 .chip-grid {
@@ -914,6 +860,12 @@ button:focus-visible {
   border-radius: var(--radius-md);
   padding: 1.1rem 1.3rem;
   box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.chip-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 .chip-acronym {
   font-weight: 800;
@@ -936,11 +888,6 @@ a.chip-acronym:hover { text-decoration: underline; }
   text-align: center;
   gap: 0.6rem;
   padding: 1.5rem 1.25rem;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.chip-featured:hover {
-  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
-  transform: translateY(-2px);
 }
 .chip-featured .logo-badge { --logo-size: 64px; }
 .chip-featured .chip-desc { margin-top: 0; }
@@ -1038,52 +985,3 @@ a.chip-acronym:hover { text-decoration: underline; }
   .hero-avatar { order: -1; }
 }
 
-@media (max-width: 720px) {
-  .nav-toggle { display: flex; }
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    background: var(--bg-alt);
-    border-bottom: 1px solid var(--surface-border);
-    max-height: 0;
-    overflow: hidden auto;
-    transition: max-height 0.25s ease;
-  }
-  .nav-links.open { max-height: min(80vh, 560px); }
-  .nav-links li { width: 100%; }
-  .nav-links a {
-    display: block;
-    padding: 0.9rem 1.5rem;
-    border-top: 1px solid var(--surface-border);
-  }
-
-  /* Sem hover no touch: o dropdown vira uma lista sempre expandida */
-  .has-dropdown { position: static; }
-  .nav-dropdown-trigger {
-    width: 100%;
-    justify-content: space-between;
-    padding: 0.9rem 1.5rem;
-    border-top: 1px solid var(--surface-border);
-  }
-  .chevron { display: none; }
-  .nav-dropdown {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    padding-top: 0;
-  }
-  .nav-dropdown-panel {
-    background: var(--bg);
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
-  .nav-dropdown-panel a { padding: 0.75rem 1.5rem 0.75rem 2.25rem; }
-}

@@ -116,11 +116,11 @@
         "logo": "assets/logos/maker.png"
       }
     ],
-    "footnote": "Nomes oficiais e edições específicas podem ser detalhados por olimpíada — espaço reservado para ajuste fino."
+    "footnote": ""
   },
   "githubAccounts": {
     "heading": "Código aberto",
-    "intro": "Repositórios públicos organizados por fase e frente de trabalho.",
+    "intro": "",
     "items": [
       {
         "label": "rberlanda01",
@@ -218,8 +218,8 @@
             "logo": "assets/logos/bambulab.png"
           },
           {
-            "label": "Due",
-            "logo": "assets/logos/due.jpg"
+            "label": "MakeyMakey",
+            "logo": "assets/logos/makeymakey.jpg"
           }
         ]
       },
@@ -497,7 +497,7 @@
   },
   "mentoredProjects": {
     "heading": "Projetos mentorados",
-    "intro": "Projetos de estudantes mentorados em sala de aula — fotos, vídeos e descrições podem ser adicionados aqui conforme forem documentados.",
+    "intro": "Projetos de estudantes mentorados em sala de aula.",
     "statsLabel": "Números de 2026",
     "stats": [
       {
