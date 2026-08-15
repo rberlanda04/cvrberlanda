@@ -525,6 +525,22 @@
           { "count": "556", "label": "Alunos" },
           { "count": "32", "label": "Projetos" }
         ]
+      },
+      {
+        "year": "2023",
+        "stats": [
+          { "count": "38", "label": "Turmas" },
+          { "count": "689", "label": "Alunos" },
+          { "count": "45", "label": "Projetos" }
+        ]
+      },
+      {
+        "year": "2022",
+        "stats": [
+          { "count": "14", "label": "Turmas" },
+          { "count": "323", "label": "Alunos" },
+          { "count": "13", "label": "Projetos" }
+        ]
       }
     ],
     "items": [
