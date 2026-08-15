@@ -485,20 +485,22 @@ function renderContact(data) {
     li.appendChild(link);
     iconsList.appendChild(li);
   });
-  const linkedin = data.profile.social.find((s) => s.label === "LinkedIn" && s.url);
-  if (linkedin) {
+  const contactSocialLabels = ["LinkedIn", "GitHub"];
+  contactSocialLabels.forEach((label) => {
+    const social = data.profile.social.find((s) => s.label === label && s.url);
+    if (!social) return;
     const li = el("li");
     const link = document.createElement("a");
     link.className = "contact-icon-link";
-    link.href = linkedin.url;
+    link.href = social.url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.title = "LinkedIn";
-    link.setAttribute("aria-label", "Abrir perfil no LinkedIn");
-    link.appendChild(createLogoBadge({ logo: linkedin.logo, label: "LinkedIn", size: 52 }));
+    link.title = label;
+    link.setAttribute("aria-label", `Abrir perfil no ${label}`);
+    link.appendChild(createLogoBadge({ logo: social.logo, label, size: 52 }));
     li.appendChild(link);
     iconsList.appendChild(li);
-  }
+  });
 
   setText("contact-location", data.profile.location);
 
