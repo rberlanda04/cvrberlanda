@@ -39,7 +39,7 @@
   "about": {
     "heading": "Sobre",
     "paragraphs": [
-      "Sou professor de Robótica e atuo hoje em duas escolas da Rede Marista Brasil: a Escola Social Marista Ecológica e o Colégio Marista Anjo da Guarda. Meu trabalho é mostrar, todos os dias, o que acontece dentro da sala de aula — projetos de robótica, programação e cultura maker feitos pelos próprios estudantes.",
+      "Sou professor de Robótica e atuo hoje em duas escolas da Rede Marista Brasil: a Escola Social Marista Ecológica e o Colégio Marista Anjo da Guarda.  — projetos de robótica, programação e cultura maker feitos pelos próprios estudantes.",
       "Antes de chegar à robótica escolar, construí um caminho em tecnologia e inovação: desenvolvi projetos próprios de web e produto, atuei com consultoria e educação, blockchain e criptoativos, e produzi material didático sobre lógica de programação, arquitetura de computadores, sistemas operacionais, segurança digital e e-business.",
       "Esse percurso deu origem à Izicode Edu, minha iniciativa para levar cultura maker, STEAM e robótica — integradas à BNCC — para escolas, através de laboratórios maker, formação de professores e preparação de estudantes para olimpíadas científicas e hackathons."
     ]
@@ -498,23 +498,33 @@
   "mentoredProjects": {
     "heading": "Projetos mentorados",
     "intro": "Projetos de estudantes mentorados em sala de aula.",
-    "statsLabel": "Números de 2026",
-    "stats": [
+    "statsLabel": "Números por ano",
+    "statsByYear": [
       {
-        "count": "17+",
-        "label": "Turmas"
+        "year": "2026",
+        "stats": [
+          { "count": "26", "label": "Turmas" },
+          { "count": "540", "label": "Alunos" },
+          { "count": "52", "label": "Equipes" },
+          { "count": "38", "label": "Projetos" }
+        ]
       },
       {
-        "count": "410+",
-        "label": "Alunos"
+        "year": "2025",
+        "stats": [
+          { "count": "20", "label": "Turmas" },
+          { "count": "474", "label": "Alunos" },
+          { "count": "47", "label": "Equipes" },
+          { "count": "30", "label": "Projetos" }
+        ]
       },
       {
-        "count": "53+",
-        "label": "Equipes"
-      },
-      {
-        "count": "37+",
-        "label": "Projetos"
+        "year": "2024",
+        "stats": [
+          { "count": "27", "label": "Turmas" },
+          { "count": "556", "label": "Alunos" },
+          { "count": "32", "label": "Projetos" }
+        ]
       }
     ],
     "items": [

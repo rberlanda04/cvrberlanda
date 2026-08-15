@@ -153,7 +153,12 @@ function renderAbout(data) {
   setText("about-heading", data.about.heading);
   const container = document.getElementById("about-text");
   container.innerHTML = "";
-  data.about.paragraphs.forEach((p) => container.appendChild(el("p", null, p)));
+  const paragraphs = data.about.paragraphs;
+  paragraphs.forEach((p, index) => {
+    // O último parágrafo é sempre a "história de origem" (ex.: Izicode Edu) — ganha um leve destaque.
+    const isLast = index === paragraphs.length - 1;
+    container.appendChild(el("p", isLast ? "about-highlight" : null, p));
+  });
 }
 
 function renderRoles(data) {
@@ -360,6 +365,26 @@ function setupGithubToggle() {
   });
 }
 
+// Carrossel de 2 slides no Contato: contatos rápidos <-> formulário.
+function setupContactCarousel() {
+  const track = document.getElementById("contact-carousel-track");
+  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+  const prevBtn = document.getElementById("contact-carousel-prev");
+  const nextBtn = document.getElementById("contact-carousel-next");
+  const slideCount = dots.length;
+  let current = 0;
+
+  const goTo = (index) => {
+    current = (index + slideCount) % slideCount;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((dot, i) => dot.setAttribute("aria-pressed", String(i === current)));
+  };
+
+  dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+  prevBtn.addEventListener("click", () => goTo(current - 1));
+  nextBtn.addEventListener("click", () => goTo(current + 1));
+}
+
 function renderCompetitions(data) {
   setText("competitions-heading", data.competitions.heading);
   setText("competitions-intro", data.competitions.intro);
@@ -380,21 +405,42 @@ function renderMentored(data) {
   setText("mentored-intro", data.mentoredProjects.intro);
 
   setText("mentored-stats-label", data.mentoredProjects.statsLabel);
+
   const statsGrid = document.getElementById("mentored-stats");
-  statsGrid.innerHTML = "";
-  (data.mentoredProjects.stats || []).forEach((stat) => {
-    const { target, suffix } = parseStatCount(stat.count);
-    const tile = el(
-      "div",
-      "stat-tile",
+  const renderYearStats = (yearEntry) => {
+    statsGrid.innerHTML = "";
+    yearEntry.stats.forEach((stat) => {
+      const { target, suffix } = parseStatCount(stat.count);
+      const tile = el(
+        "div",
+        "stat-tile",
+        `
+        <span class="stat-count" data-target="${target}" data-suffix="${suffix}">0${suffix}</span>
+        <span class="stat-label">${stat.label}</span>
       `
-      <span class="stat-count" data-target="${target}" data-suffix="${suffix}">0${suffix}</span>
-      <span class="stat-label">${stat.label}</span>
-    `
-    );
-    statsGrid.appendChild(tile);
+      );
+      statsGrid.appendChild(tile);
+    });
+    setupStatsCounter(statsGrid);
+  };
+
+  const yearsData = data.mentoredProjects.statsByYear || [];
+  const yearsWrap = document.getElementById("mentored-stats-years");
+  yearsWrap.innerHTML = "";
+  yearsData.forEach((yearEntry, index) => {
+    const btn = el("button", "stats-year-tab", yearEntry.year);
+    btn.type = "button";
+    btn.setAttribute("aria-pressed", String(index === 0));
+    btn.addEventListener("click", () => {
+      yearsWrap
+        .querySelectorAll(".stats-year-tab")
+        .forEach((b) => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      renderYearStats(yearEntry);
+    });
+    yearsWrap.appendChild(btn);
   });
-  setupStatsCounter(statsGrid);
+  if (yearsData.length) renderYearStats(yearsData[0]);
 
   const grid = document.getElementById("mentored-grid");
   grid.innerHTML = "";
@@ -455,6 +501,20 @@ function renderContact(data) {
   }
 
   setText("contact-location", data.profile.location);
+
+  // Formulário sem backend: monta um mailto: com os dados preenchidos.
+  const form = document.getElementById("contact-form");
+  const recipient = (data.profile.emails && data.profile.emails[0] && data.profile.emails[0].address) || "";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!recipient) return;
+    const name = form.name.value.trim();
+    const subject = form.subject.value.trim();
+    const message = form.message.value.trim();
+    const body = `${message}\n\n— ${name}`;
+    const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
 }
 
 function renderProfile(data) {
@@ -546,4 +606,5 @@ setupThemeToggle();
 setupRevealAnimations();
 setupTimelineExpand();
 setupGithubToggle();
+setupContactCarousel();
 init();

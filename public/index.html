@@ -136,6 +136,7 @@
         <h2 class="section-title" id="mentored-heading">Projetos mentorados</h2>
         <p class="section-intro" id="mentored-intro"></p>
         <p class="stats-label" id="mentored-stats-label"></p>
+        <div class="stats-years" id="mentored-stats-years"></div>
         <div class="stats-grid" id="mentored-stats"></div>
         <div class="cards-grid" id="mentored-grid"></div>
       </div>
@@ -144,8 +145,45 @@
     <!-- CONTATO -->
     <section class="section section-alt" id="contato">
       <div class="container contact-grid">
-        <ul class="contact-icons" id="contact-icons"></ul>
-        <p class="contact-location" id="contact-location"></p>
+        <div class="contact-carousel">
+          <button class="carousel-arrow carousel-arrow-prev" id="contact-carousel-prev" aria-label="Slide anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div class="contact-carousel-viewport">
+            <div class="contact-carousel-track" id="contact-carousel-track">
+              <div class="contact-slide">
+                <ul class="contact-icons" id="contact-icons"></ul>
+                <p class="contact-location" id="contact-location"></p>
+              </div>
+              <div class="contact-slide">
+                <form class="contact-form" id="contact-form" novalidate>
+                  <div class="form-field">
+                    <label for="contact-name">Nome</label>
+                    <input type="text" id="contact-name" name="name" autocomplete="name" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="contact-subject">Assunto</label>
+                    <input type="text" id="contact-subject" name="subject" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="contact-message">Mensagem</label>
+                    <textarea id="contact-message" name="message" rows="4" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-arrow carousel-arrow-next" id="contact-carousel-next" aria-label="Próximo slide">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="carousel-dots" id="contact-carousel-dots">
+          <button class="carousel-dot" data-slide="0" aria-label="Ver contatos rápidos" aria-pressed="true"></button>
+          <button class="carousel-dot" data-slide="1" aria-label="Ver formulário de contato" aria-pressed="false"></button>
+        </div>
       </div>
     </section>
   </main>

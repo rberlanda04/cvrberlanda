@@ -283,7 +283,8 @@ h1, h2, h3, p { margin: 0; }
 .timeline-expand:active,
 .contact-icon-link:active,
 .github-toggle:active,
-.skill-group-header:active {
+.skill-group-header:active,
+.stats-year-tab:active {
   transform: scale(0.96);
 }
 
@@ -332,6 +333,14 @@ button:focus-visible {
   max-width: 75ch;
   margin-bottom: 1rem;
   font-size: 1.02rem;
+}
+.about-highlight {
+  color: var(--text);
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--surface));
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.9rem 1.1rem;
+  max-width: 75ch;
 }
 
 /* =========================================================
@@ -473,6 +482,28 @@ button:focus-visible {
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: 0.85rem;
+}
+.stats-years {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.stats-year-tab {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+.stats-year-tab:hover { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-2px); }
+.stats-year-tab[aria-pressed="true"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-on-primary);
 }
 .stats-grid {
   display: grid;
@@ -931,6 +962,104 @@ a.chip-acronym:hover { text-decoration: underline; }
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* Carrossel de 2 slides: contatos rápidos <-> formulário */
+.contact-carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 480px;
+}
+.contact-carousel-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.contact-carousel-track {
+  display: flex;
+  width: 200%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-slide {
+  width: 50%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+.carousel-arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.carousel-arrow:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.carousel-arrow:active { transform: scale(0.92); }
+.carousel-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: var(--surface-border);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.carousel-dot[aria-pressed="true"] { background: var(--color-primary); transform: scale(1.35); }
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+.form-field input,
+.form-field textarea {
+  font: inherit;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.form-field input:focus,
+.form-field textarea:focus { outline: none; border-color: var(--color-primary); }
+.contact-form .btn { align-self: flex-start; }
 .social-list {
   display: flex;
   gap: 0.75rem;
@@ -983,5 +1112,11 @@ a.chip-acronym:hover { text-decoration: underline; }
   .hero-tagline { margin-inline: auto; }
   .hero-actions { justify-content: center; }
   .hero-avatar { order: -1; }
+}
+
+@media (max-width: 480px) {
+  .contact-carousel { gap: 0.5rem; }
+  .carousel-arrow { width: 34px; height: 34px; }
+  .contact-slide { padding: 1.5rem 1.1rem; }
 }
 
