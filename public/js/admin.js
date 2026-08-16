@@ -169,7 +169,7 @@ document.getElementById("admin-google-btn").addEventListener("click", async () =
   try {
     await signInWithPopup(auth, googleProvider);
   } catch (err) {
-    errorEl.textContent = "Não foi possível entrar com o Google.";
+    errorEl.textContent = `Não foi possível entrar com o Google. (${err.code || err.message})`;
   } finally {
     btn.disabled = false;
     btn.textContent = "Entrar com Google";
