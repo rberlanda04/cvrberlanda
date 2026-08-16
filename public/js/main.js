@@ -11,6 +11,9 @@ import {
   collection,
   addDoc,
   serverTimestamp,
+  query,
+  where,
+  getDocs,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -580,28 +583,64 @@ function renderMentored(data) {
 
   const grid = document.getElementById("mentored-grid");
   grid.innerHTML = "";
-  if (!data.mentoredProjects.items.length) {
+  const staticItems = data.mentoredProjects.items || [];
+  staticItems.forEach((project) => grid.appendChild(buildMentoredCard(project)));
+  updateMentoredEmptyState(grid);
+  loadApprovedMentoredProjects(grid);
+}
+
+function buildMentoredCard(project) {
+  const card = el("article", "card card-with-logo");
+  card.appendChild(createLogoBadge({ logo: project.logo, label: project.title, size: 48 }));
+  const body = el("div");
+  const titleHtml = project.url
+    ? `<a class="card-title card-title-link" href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a>`
+    : `<h3 class="card-title">${project.title}</h3>`;
+  body.innerHTML = `
+    <p class="card-period">${project.period || ""}</p>
+    ${titleHtml}
+    <p class="card-org">${project.event || ""}</p>
+    <p class="card-desc">${project.description || ""}</p>
+  `;
+  card.appendChild(body);
+  return card;
+}
+
+function updateMentoredEmptyState(grid) {
+  const existingEmpty = grid.querySelector(".empty-state");
+  if (grid.querySelector(".card")) {
+    if (existingEmpty) existingEmpty.remove();
+  } else if (!existingEmpty) {
     grid.appendChild(
       el("div", "empty-state", "Nenhum projeto cadastrado ainda — adicione itens em data/profile.json → mentoredProjects.items.")
     );
-    return;
   }
-  data.mentoredProjects.items.forEach((project) => {
-    const card = el("article", "card card-with-logo");
-    card.appendChild(createLogoBadge({ logo: project.logo, label: project.title, size: 48 }));
-    const body = el("div");
-    const titleHtml = project.url
-      ? `<a class="card-title card-title-link" href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a>`
-      : `<h3 class="card-title">${project.title}</h3>`;
-    body.innerHTML = `
-      <p class="card-period">${project.period || ""}</p>
-      ${titleHtml}
-      <p class="card-org">${project.event || ""}</p>
-      <p class="card-desc">${project.description || ""}</p>
-    `;
-    card.appendChild(body);
-    grid.appendChild(card);
-  });
+}
+
+// Projetos enviados por alunos via cadastro-projeto.html e aprovados no
+// painel /admin aparecem aqui automaticamente, sem precisar editar o
+// profile.json nem fazer novo deploy.
+async function loadApprovedMentoredProjects(grid) {
+  try {
+    const snapshot = await getDocs(
+      query(collection(db, "projectSubmissions"), where("status", "==", "approved"))
+    );
+    snapshot.forEach((docSnap) => {
+      const submission = docSnap.data();
+      grid.appendChild(
+        buildMentoredCard({
+          title: submission.name,
+          logo: submission.logo,
+          description: submission.description,
+          url: submission.link || null,
+          event: "Projeto de aluno",
+        })
+      );
+    });
+    if (!snapshot.empty) updateMentoredEmptyState(grid);
+  } catch (err) {
+    console.error("Falha ao carregar projetos aprovados", err);
+  }
 }
 
 // Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em português.

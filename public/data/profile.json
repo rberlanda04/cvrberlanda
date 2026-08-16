@@ -9,8 +9,8 @@
     "tagline": "Transformando a educação, através da tecnologia.      — Levando cultura maker, robótica e inovação para dentro da sala de aula. ",
     "location": "Curitiba, PR — Brasil",
     "initials": "RB",
-    "photo": "assets/logos/fotoperfil.jpg",
-    "brandLogo": "assets/logos/logo.png",
+    "photo": "assets/logos/fotodeperfil.jpeg",
+    "brandLogo": "assets/logos/logo.jpeg",
     "emails": [
       {
         "label": "Izicode Edu",
@@ -477,7 +477,7 @@
         "type": "Projeto pessoal",
         "description": "Primeira versão do currículo online, com experiência profissional, skills técnicas e certificações.",
         "url": "https://rberlanda.surge.sh/",
-        "logo": "assets/logos/logo.png"
+        "logo": "assets/logos/logo.jpeg"
       }
     ]
   },
