@@ -123,6 +123,8 @@ function init() {
     {
       input: document.getElementById("pf-logo"),
       error: document.getElementById("pf-error-logo"),
+      errorTarget: document.getElementById("pf-dropzone"),
+      focusTarget: document.getElementById("pf-dropzone"),
       validate: () => {
         const file = document.getElementById("pf-logo").files[0];
         return !!file && file.type.startsWith("image/") && file.size <= MAX_LOGO_BYTES;
@@ -178,15 +180,12 @@ function init() {
 
   const showError = (field, show) => {
     if (field.error) field.error.textContent = show ? field.message : "";
-    if (field.isOds) {
-      field.input.classList.toggle("has-error", show);
-    } else {
-      field.input.classList.toggle("has-error", show);
-      if (show) {
-        field.input.classList.remove("shake");
-        void field.input.offsetWidth; // força reflow pra reiniciar a animação
-        field.input.classList.add("shake");
-      }
+    const target = field.errorTarget || field.input;
+    target.classList.toggle("has-error", show);
+    if (show) {
+      target.classList.remove("shake");
+      void target.offsetWidth; // força reflow pra reiniciar a animação
+      target.classList.add("shake");
     }
   };
 
@@ -201,21 +200,69 @@ function init() {
   const goTo = (index) => {
     current = Math.max(0, Math.min(fieldCount - 1, index));
     updateUI();
-    if (!fields[current].isOds) fields[current].input.focus({ preventScroll: true });
+    if (!fields[current].isOds) {
+      const target = fields[current].focusTarget || fields[current].input;
+      target.focus({ preventScroll: true });
+    }
   };
 
   odsGrid.addEventListener("odschange", () => showError(fields[3], false));
 
+  // Zona de upload da logo: clique, teclado (Enter/Espaço) e arrastar-e-soltar
+  // levam ao mesmo <input type="file"> escondido dentro da div.
+  const dropzone = document.getElementById("pf-dropzone");
+  const dropzoneEmpty = document.getElementById("pf-dropzone-empty");
+  const logoInput = fields[1].input;
   const logoPreview = document.getElementById("pf-logo-preview");
-  fields[1].input.addEventListener("change", () => {
-    const file = fields[1].input.files[0];
+
+  const updateLogoPreview = () => {
+    const file = logoInput.files[0];
     if (!file) {
       logoPreview.hidden = true;
       logoPreview.removeAttribute("src");
+      dropzoneEmpty.hidden = false;
       return;
     }
     logoPreview.src = URL.createObjectURL(file);
     logoPreview.hidden = false;
+    dropzoneEmpty.hidden = true;
+    // O preview muda a altura do passo — recalcula a altura do viewport
+    // (que corta o conteúdo com overflow: hidden) pra não cortar a imagem.
+    updateUI();
+  };
+
+  logoInput.addEventListener("change", () => {
+    updateLogoPreview();
+    showError(fields[1], false);
+  });
+
+  dropzone.addEventListener("click", () => logoInput.click());
+  dropzone.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      logoInput.click();
+    }
+  });
+
+  ["dragenter", "dragover"].forEach((evtName) => {
+    dropzone.addEventListener(evtName, (event) => {
+      event.preventDefault();
+      dropzone.classList.add("is-dragover");
+    });
+  });
+  ["dragleave", "dragend"].forEach((evtName) => {
+    dropzone.addEventListener(evtName, () => dropzone.classList.remove("is-dragover"));
+  });
+  dropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    dropzone.classList.remove("is-dragover");
+    const file = event.dataTransfer.files[0];
+    if (!file) return;
+    const transfer = new DataTransfer();
+    transfer.items.add(file);
+    logoInput.files = transfer.files;
+    updateLogoPreview();
+    showError(fields[1], false);
   });
 
   const showSuccess = () => {

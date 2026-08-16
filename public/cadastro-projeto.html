@@ -39,12 +39,16 @@
             <div class="wizard-step">
               <span class="wizard-step-count">2 de 5</span>
               <label for="pf-logo">Logo do projeto</label>
-              <div class="pf-upload">
+              <div class="pf-dropzone" id="pf-dropzone" tabindex="0" role="button" aria-describedby="pf-error-logo">
                 <img class="pf-upload-preview" id="pf-logo-preview" alt="" hidden />
-                <input type="file" id="pf-logo" name="pfLogo" accept="image/*" />
+                <div class="pf-dropzone-empty" id="pf-dropzone-empty">
+                  <svg class="pf-dropzone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M12 4 7 9M12 4l5 5" /><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></svg>
+                  <span>Arraste uma imagem aqui ou <strong>clique para escolher</strong></span>
+                </div>
+                <input type="file" id="pf-logo" name="pfLogo" accept="image/*" class="pf-dropzone-input" tabindex="-1" />
               </div>
               <p class="field-error" id="pf-error-logo" role="alert"></p>
-              <p class="pf-note">Envie uma imagem (JPG, PNG ou WebP) de até 5MB.</p>
+              <p class="pf-note">JPG, PNG ou WebP, até 5MB.</p>
             </div>
 
             <div class="wizard-step">
