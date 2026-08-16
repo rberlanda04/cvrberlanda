@@ -303,6 +303,7 @@ h1, h2, h3, p { margin: 0; }
   html { scroll-behavior: auto; }
   .timeline-item:first-child::before { animation: none; }
   .hero-avatar { animation: none; }
+  .tech-tile-highlight { animation: none; }
 }
 
 /* Foco visível e consistente para navegação por teclado (halo, estilo shadcn/ui) */
@@ -564,6 +565,16 @@ button:focus-visible {
   border-color: color-mix(in srgb, var(--color-primary) 40%, var(--surface-border));
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
+}
+a.tech-tile { text-decoration: none; color: inherit; cursor: pointer; }
+.tech-tile-highlight {
+  border-color: #22c55e;
+  animation: tech-tile-pulse 1.6s ease-in-out infinite;
+}
+.tech-tile-highlight:hover { border-color: #22c55e; }
+@keyframes tech-tile-pulse {
+  0%, 100% { border-color: #22c55e; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.35); }
+  50% { border-color: #86efac; box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
 }
 .tech-tile:hover .logo-img,
 .chip-featured:hover .logo-img { transform: scale(1.08); }

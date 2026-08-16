@@ -225,7 +225,13 @@ function renderTechStack(data) {
     block.appendChild(el("h3", "tech-group-title", group.title));
     const grid = el("div", "tech-grid");
     group.items.forEach((tool) => {
-      const tile = el("div", "tech-tile");
+      const tileClass = `tech-tile${tool.highlight ? " tech-tile-highlight" : ""}`;
+      const tile = el(tool.url ? "a" : "div", tileClass);
+      if (tool.url) {
+        tile.href = tool.url;
+        tile.target = "_blank";
+        tile.rel = "noopener noreferrer";
+      }
       tile.appendChild(createLogoBadge({ logo: tool.logo, label: tool.label, size: 64 }));
       tile.appendChild(el("p", "tech-label", tool.label));
       grid.appendChild(tile);

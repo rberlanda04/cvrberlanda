@@ -222,6 +222,18 @@
           {
             "label": "Minecraft Education",
             "logo": "assets/logos/minecrafteducation.png"
+          },
+          {
+            "label": "IziCode",
+            "logo": "assets/logos/izicode.png",
+            "url": "https://izicode.com.br",
+            "highlight": true
+          },
+          {
+            "label": "RPG Maker Edu",
+            "logo": "assets/logos/rpgmaker.png",
+            "url": "https://izicodeedurpg.vercel.app/",
+            "highlight": true
           }
         ]
       },
