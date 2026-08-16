@@ -1,6 +1,7 @@
-// Página escondida (não linkada no currículo): formulário pra alunos/turmas
-// cadastrarem um projeto. Grava em "projectSubmissions" com status "pending" —
-// a revisão de quais sobem pro portfólio é manual, pelo Console do Firebase.
+// Página escondida (não linkada no currículo): formulário em etapas pra
+// alunos/turmas cadastrarem um projeto. Grava em "projectSubmissions" com
+// status "pending" — a revisão de quais sobem pro portfólio é manual,
+// direto no Console do Firebase.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import {
   getFirestore,
@@ -20,26 +21,35 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
-// Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em português.
+// Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em
+// português. Os ícones (assets/logos/ods/ods-N.png) são os oficiais da ONU,
+// via Wikimedia Commons.
 const ODS_LIST = [
-  "1 — Erradicação da Pobreza",
-  "2 — Fome Zero e Agricultura Sustentável",
-  "3 — Saúde e Bem-Estar",
-  "4 — Educação de Qualidade",
-  "5 — Igualdade de Gênero",
-  "6 — Água Potável e Saneamento",
-  "7 — Energia Limpa e Acessível",
-  "8 — Trabalho Decente e Crescimento Econômico",
-  "9 — Indústria, Inovação e Infraestrutura",
-  "10 — Redução das Desigualdades",
-  "11 — Cidades e Comunidades Sustentáveis",
-  "12 — Consumo e Produção Responsáveis",
-  "13 — Ação Contra a Mudança Global do Clima",
-  "14 — Vida na Água",
-  "15 — Vida Terrestre",
-  "16 — Paz, Justiça e Instituições Eficazes",
-  "17 — Parcerias e Meios de Implementação",
+  { n: 1, name: "Erradicação da Pobreza" },
+  { n: 2, name: "Fome Zero e Agricultura Sustentável" },
+  { n: 3, name: "Saúde e Bem-Estar" },
+  { n: 4, name: "Educação de Qualidade" },
+  { n: 5, name: "Igualdade de Gênero" },
+  { n: 6, name: "Água Potável e Saneamento" },
+  { n: 7, name: "Energia Limpa e Acessível" },
+  { n: 8, name: "Trabalho Decente e Crescimento Econômico" },
+  { n: 9, name: "Indústria, Inovação e Infraestrutura" },
+  { n: 10, name: "Redução das Desigualdades" },
+  { n: 11, name: "Cidades e Comunidades Sustentáveis" },
+  { n: 12, name: "Consumo e Produção Responsáveis" },
+  { n: 13, name: "Ação Contra a Mudança Global do Clima" },
+  { n: 14, name: "Vida na Água" },
+  { n: 15, name: "Vida Terrestre" },
+  { n: 16, name: "Paz, Justiça e Instituições Eficazes" },
+  { n: 17, name: "Parcerias e Meios de Implementação" },
 ];
+
+function el(tag, className, html) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (html !== undefined) node.innerHTML = html;
+  return node;
+}
 
 function isValidUrl(value) {
   try {
@@ -50,18 +60,49 @@ function isValidUrl(value) {
   }
 }
 
-function init() {
-  const select = document.getElementById("pf-ods");
-  ODS_LIST.forEach((label) => {
-    const option = document.createElement("option");
-    option.value = label;
-    option.textContent = label;
-    select.appendChild(option);
+function setupOdsGrid() {
+  const grid = document.getElementById("ods-grid");
+  const selected = new Set();
+
+  ODS_LIST.forEach((goal) => {
+    const label = `${goal.n} — ${goal.name}`;
+    const btn = el(
+      "button",
+      "ods-option",
+      `<img src="assets/logos/ods/ods-${goal.n}.png" alt="ODS ${label}" />`
+    );
+    btn.type = "button";
+    btn.title = label;
+    btn.setAttribute("aria-pressed", "false");
+    btn.addEventListener("click", () => {
+      const isSelected = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", String(!isSelected));
+      if (isSelected) selected.delete(label);
+      else selected.add(label);
+      grid.dispatchEvent(new CustomEvent("odschange"));
+    });
+    grid.appendChild(btn);
   });
 
+  return selected;
+}
+
+function init() {
+  const selectedOds = setupOdsGrid();
+
+  const viewport = document.querySelector(".wizard-viewport");
+  const track = document.getElementById("wizard-track");
+  const steps = Array.from(track.children); // 5 campos + 1 tela de sucesso
+  const slideCount = steps.length;
+  const progressBar = document.getElementById("wizard-progress-bar");
+  const dotsWrap = document.getElementById("wizard-dots");
+  const nav = document.getElementById("wizard-nav");
+  const backBtn = document.getElementById("wizard-back");
+  const nextBtn = document.getElementById("wizard-next");
   const form = document.getElementById("project-form");
-  const submitBtn = document.getElementById("pf-submit");
-  const successPanel = document.getElementById("project-form-success");
+  const odsGrid = document.getElementById("ods-grid");
+  const odsError = document.getElementById("pf-error-ods");
+  let current = 0;
 
   const fields = [
     {
@@ -83,71 +124,125 @@ function init() {
       message: "Descreva o projeto com pelo menos 10 caracteres.",
     },
     {
-      input: document.getElementById("pf-ods"),
-      error: document.getElementById("pf-error-ods"),
-      validate: (v) => v.trim().length > 0,
-      message: "Selecione o ODS relacionado.",
+      input: odsGrid,
+      error: odsError,
+      validate: () => selectedOds.size > 0,
+      message: "Selecione pelo menos um ODS.",
+      isOds: true,
+    },
+    {
+      input: document.getElementById("pf-link"),
+      error: document.getElementById("pf-error-link"),
+      validate: (v) => v.trim().length === 0 || isValidUrl(v.trim()),
+      message: "Esse link não parece válido (comece com https://) — ou deixe em branco.",
     },
   ];
-  const linkInput = document.getElementById("pf-link");
+  const fieldCount = fields.length;
+  const successIndex = slideCount - 1;
+
+  // Largura calculada em JS (não fixa no CSS) — essa página tem um número de
+  // telas diferente do wizard de contato, que usa as mesmas classes.
+  track.style.width = `${slideCount * 100}%`;
+  steps.forEach((step) => {
+    step.style.width = `${100 / slideCount}%`;
+  });
+
+  dotsWrap.innerHTML = "";
+  const dots = fields.map(() => {
+    const dot = el("span", "wizard-dot");
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  const updateUI = () => {
+    track.style.transform = `translateX(-${current * (100 / slideCount)}%)`;
+    viewport.style.height = `${steps[current].offsetHeight}px`;
+    const progressStep = Math.min(current + 1, fieldCount);
+    progressBar.style.width = `${(progressStep / fieldCount) * 100}%`;
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === current));
+    backBtn.classList.toggle("is-hidden", current === 0);
+    nextBtn.textContent = current === fieldCount - 1 ? "Enviar projeto" : "Próximo";
+  };
 
   const showError = (field, show) => {
-    field.error.textContent = show ? field.message : "";
-    field.input.classList.toggle("has-error", show);
-    if (show) {
-      field.input.classList.remove("shake");
-      void field.input.offsetWidth;
-      field.input.classList.add("shake");
+    if (field.error) field.error.textContent = show ? field.message : "";
+    if (field.isOds) {
+      field.input.classList.toggle("has-error", show);
+    } else {
+      field.input.classList.toggle("has-error", show);
+      if (show) {
+        field.input.classList.remove("shake");
+        void field.input.offsetWidth; // força reflow pra reiniciar a animação
+        field.input.classList.add("shake");
+      }
     }
   };
 
-  fields.forEach((field) => {
-    const clear = () => showError(field, false);
-    field.input.addEventListener("input", clear);
-    field.input.addEventListener("change", clear);
-  });
+  const validateCurrent = () => {
+    const field = fields[current];
+    const value = field.isOds ? null : field.input.value;
+    const valid = field.validate(value);
+    showError(field, !valid);
+    return valid;
+  };
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  const goTo = (index) => {
+    current = Math.max(0, Math.min(fieldCount - 1, index));
+    updateUI();
+    if (!fields[current].isOds) fields[current].input.focus({ preventScroll: true });
+  };
 
-    let firstInvalid = null;
-    fields.forEach((field) => {
-      const valid = field.validate(field.input.value);
-      showError(field, !valid);
-      if (!valid && !firstInvalid) firstInvalid = field.input;
-    });
-    if (linkInput.value.trim() && !isValidUrl(linkInput.value.trim())) {
-      linkInput.classList.add("has-error");
-      if (!firstInvalid) firstInvalid = linkInput;
-    } else {
-      linkInput.classList.remove("has-error");
-    }
-    if (firstInvalid) {
-      firstInvalid.focus();
-      return;
-    }
+  odsGrid.addEventListener("odschange", () => showError(fields[3], false));
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Enviando...";
+  const showSuccess = () => {
+    current = successIndex;
+    updateUI();
+    nav.style.display = "none";
+  };
+
+  const submitForm = async () => {
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Enviando...";
     try {
       await addDoc(collection(db, "projectSubmissions"), {
         name: fields[0].input.value.trim(),
         logo: fields[1].input.value.trim(),
         description: fields[2].input.value.trim(),
-        ods: fields[3].input.value.trim(),
-        link: linkInput.value.trim() || null,
+        ods: Array.from(selectedOds),
+        link: fields[4].input.value.trim() || null,
         status: "pending",
         createdAt: serverTimestamp(),
       });
-      form.hidden = true;
-      successPanel.hidden = false;
+      showSuccess();
     } catch (err) {
       console.error("Falha ao enviar projeto", err);
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Enviar projeto";
+      nextBtn.disabled = false;
+      nextBtn.textContent = "Enviar projeto";
       alert("Não foi possível enviar agora. Tente de novo em instantes.");
     }
+  };
+
+  nextBtn.addEventListener("click", () => {
+    if (!validateCurrent()) return;
+    if (current < fieldCount - 1) goTo(current + 1);
+    else submitForm();
   });
+  backBtn.addEventListener("click", () => goTo(current - 1));
+  form.addEventListener("submit", (event) => event.preventDefault());
+
+  fields.forEach((field, index) => {
+    if (field.isOds) return;
+    field.input.addEventListener("input", () => showError(field, false));
+    field.input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && field.input.tagName !== "TEXTAREA") {
+        event.preventDefault();
+        nextBtn.click();
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => updateUI());
+  updateUI();
 }
 
 init();

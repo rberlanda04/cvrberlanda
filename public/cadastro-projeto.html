@@ -17,51 +17,71 @@
 <body>
   <main class="project-form-page">
     <div class="project-form-card">
-      <h1 class="section-title">Cadastre o projeto da sua turma</h1>
-      <p class="section-intro">Preencha os dados abaixo. Sua submissão é revisada antes de entrar no portfólio.</p>
+      <h1 class="section-title" style="text-align: center;">Cadastre o projeto da sua turma</h1>
+      <p class="section-intro" style="text-align: center; margin-inline: auto;">
+        Preencha em poucos passos — sua submissão é revisada antes de entrar no portfólio.
+      </p>
 
-      <form class="project-form" id="project-form" novalidate>
-        <div class="pf-field">
-          <label for="pf-name">Nome do projeto</label>
-          <input type="text" id="pf-name" name="pfName" placeholder="Ex.: Estação meteorológica com Arduino" />
-          <p class="field-error" id="pf-error-name" role="alert"></p>
-        </div>
-
-        <div class="pf-field">
-          <label for="pf-logo">Logo (link da imagem)</label>
-          <input type="url" id="pf-logo" name="pfLogo" placeholder="https://..." />
-          <p class="field-error" id="pf-error-logo" role="alert"></p>
-        </div>
-
-        <div class="pf-field">
-          <label for="pf-description">Descrição</label>
-          <textarea id="pf-description" name="pfDescription" rows="3" placeholder="Conte em poucas linhas o que o projeto faz"></textarea>
-          <p class="field-error" id="pf-error-description" role="alert"></p>
-        </div>
-
-        <div class="pf-field">
-          <label for="pf-ods">ODS relacionado</label>
-          <select id="pf-ods" name="pfOds">
-            <option value="">Selecione um objetivo</option>
-          </select>
-          <p class="field-error" id="pf-error-ods" role="alert"></p>
-        </div>
-
-        <div class="pf-field">
-          <label for="pf-link">Link do projeto <span class="pf-optional">(opcional)</span></label>
-          <input type="url" id="pf-link" name="pfLink" placeholder="https://..." />
-        </div>
-
-        <p class="pf-note">O logo é o link de uma imagem já hospedada (ex.: Google Drive, Imgur) — este formulário não recebe arquivos anexados.</p>
-
-        <button type="submit" class="btn btn-primary" id="pf-submit">Enviar projeto</button>
-      </form>
-
-      <div class="project-form-success" id="project-form-success" hidden>
-        <svg class="wizard-success-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        <p class="wizard-success-title">Projeto enviado!</p>
-        <p class="wizard-success-text">Obrigado — ele será revisado antes de entrar no portfólio.</p>
+      <div class="wizard-progress-track">
+        <div class="wizard-progress-bar" id="wizard-progress-bar"></div>
       </div>
+
+      <form class="wizard-form" id="project-form" novalidate>
+        <div class="wizard-viewport">
+          <div class="wizard-track" id="wizard-track">
+            <div class="wizard-step">
+              <span class="wizard-step-count">1 de 5</span>
+              <label for="pf-name">Nome do projeto</label>
+              <input type="text" id="pf-name" name="pfName" placeholder="Ex.: Estação meteorológica com Arduino" />
+              <p class="field-error" id="pf-error-name" role="alert"></p>
+            </div>
+
+            <div class="wizard-step">
+              <span class="wizard-step-count">2 de 5</span>
+              <label for="pf-logo">Logo (link da imagem)</label>
+              <input type="url" id="pf-logo" name="pfLogo" placeholder="https://..." />
+              <p class="field-error" id="pf-error-logo" role="alert"></p>
+              <p class="pf-note">Cole o link de uma imagem já hospedada (ex.: Google Drive, Imgur) — este formulário não recebe arquivos anexados.</p>
+            </div>
+
+            <div class="wizard-step">
+              <span class="wizard-step-count">3 de 5</span>
+              <label for="pf-description">Descrição</label>
+              <textarea id="pf-description" name="pfDescription" rows="4" placeholder="Conte em poucas linhas o que o projeto faz"></textarea>
+              <p class="field-error" id="pf-error-description" role="alert"></p>
+            </div>
+
+            <div class="wizard-step">
+              <span class="wizard-step-count">4 de 5</span>
+              <label>ODS relacionado <span class="pf-optional">(pode marcar mais de um)</span></label>
+              <div class="ods-grid" id="ods-grid"></div>
+              <p class="field-error" id="pf-error-ods" role="alert"></p>
+            </div>
+
+            <div class="wizard-step">
+              <span class="wizard-step-count">5 de 5</span>
+              <label for="pf-link">Link do projeto <span class="pf-optional">(opcional)</span></label>
+              <input type="url" id="pf-link" name="pfLink" placeholder="https://..." />
+              <p class="field-error" id="pf-error-link" role="alert"></p>
+            </div>
+
+            <div class="wizard-step wizard-step-success">
+              <svg class="wizard-success-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              <p class="wizard-success-title">Projeto enviado!</p>
+              <p class="wizard-success-text">Obrigado — ele será revisado antes de entrar no portfólio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav" id="wizard-nav">
+          <button type="button" class="wizard-nav-btn wizard-nav-back" id="wizard-back">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+            Voltar
+          </button>
+          <div class="wizard-dots" id="wizard-dots"></div>
+          <button type="button" class="btn btn-primary wizard-nav-next" id="wizard-next">Próximo</button>
+        </div>
+      </form>
     </div>
   </main>
 

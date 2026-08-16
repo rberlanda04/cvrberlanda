@@ -397,6 +397,13 @@ function setupContactWizard() {
   const fieldCount = fields.length;
   const successIndex = slideCount - 1;
 
+  // Largura calculada em JS (não fixa no CSS) — a página de cadastro de
+  // projeto usa as mesmas classes com um número diferente de telas.
+  track.style.width = `${slideCount * 100}%`;
+  steps.forEach((step) => {
+    step.style.width = `${100 / slideCount}%`;
+  });
+
   dotsWrap.innerHTML = "";
   const dots = fields.map(() => {
     const dot = el("span", "wizard-dot");

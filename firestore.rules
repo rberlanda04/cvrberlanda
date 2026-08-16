@@ -34,7 +34,7 @@ service cloud.firestore {
         && request.resource.data.description is string
         && request.resource.data.description.size() > 0
         && request.resource.data.description.size() < 2000
-        && request.resource.data.ods is string
+        && request.resource.data.ods is list
         && request.resource.data.ods.size() > 0
         && request.resource.data.status == 'pending';
     }
