@@ -137,6 +137,15 @@ h1, h2, h3, p { margin: 0; }
   background: var(--surface);
   padding: 3px;
 }
+/* A logo (avatar em pixel art) é um JPEG com fundo preto sólido — sem
+   transparência. Em vez de "contain" (que mostra o preto como uma caixa
+   dentro da caixinha do menu), usa "cover" pra preencher o badge todo
+   com o rosto/personagem centralizado, cortando as bordas pretas. */
+#brand-mark img {
+  object-fit: cover;
+  background: none;
+  padding: 0;
+}
 .theme-toggle {
   position: relative;
   display: grid;
