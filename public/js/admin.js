@@ -5,7 +5,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import {
   getAuth,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
@@ -29,6 +30,12 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+const googleProvider = new GoogleAuthProvider();
+
+// Reforça no cliente a mesma regra que já existe nas firestore.rules: só
+// essa conta Google consegue usar o painel. Qualquer outra conta é
+// deslogada na hora, com uma mensagem clara em vez de erro de permissão.
+const ALLOWED_EMAIL = "r.berlanda04@gmail.com";
 
 function el(tag, className, html) {
   const node = document.createElement(tag);
@@ -142,26 +149,30 @@ function showLogin() {
 }
 
 onAuthStateChanged(auth, (user) => {
-  if (user) showDashboard();
-  else showLogin();
+  if (user && user.email === ALLOWED_EMAIL) {
+    showDashboard();
+  } else if (user) {
+    document.getElementById("admin-login-error").textContent =
+      "Essa conta Google não tem acesso ao painel.";
+    signOut(auth);
+  } else {
+    showLogin();
+  }
 });
 
-document.getElementById("admin-login-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const email = document.getElementById("admin-email").value.trim();
-  const password = document.getElementById("admin-password").value;
+document.getElementById("admin-google-btn").addEventListener("click", async () => {
   const errorEl = document.getElementById("admin-login-error");
-  const btn = document.getElementById("admin-login-btn");
+  const btn = document.getElementById("admin-google-btn");
   errorEl.textContent = "";
   btn.disabled = true;
   btn.textContent = "Entrando...";
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    await signInWithPopup(auth, googleProvider);
   } catch (err) {
-    errorEl.textContent = "E-mail ou senha incorretos.";
+    errorEl.textContent = "Não foi possível entrar com o Google.";
   } finally {
     btn.disabled = false;
-    btn.textContent = "Entrar";
+    btn.textContent = "Entrar com Google";
   }
 });
 
