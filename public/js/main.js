@@ -367,18 +367,28 @@ function setupGithubToggle() {
 
 // Carrossel de 2 slides no Contato: contatos rápidos <-> formulário.
 function setupContactCarousel() {
+  const viewport = document.querySelector(".contact-carousel-viewport");
   const track = document.getElementById("contact-carousel-track");
+  const slides = Array.from(track.children);
   const dots = Array.from(document.querySelectorAll(".carousel-dot"));
   const prevBtn = document.getElementById("contact-carousel-prev");
   const nextBtn = document.getElementById("contact-carousel-next");
-  const slideCount = dots.length;
+  const slideCount = slides.length;
   let current = 0;
 
   const goTo = (index) => {
     current = (index + slideCount) % slideCount;
-    track.style.transform = `translateX(-${current * 100}%)`;
+    // translateX em % é relativo à largura do próprio track (slideCount * 100%),
+    // então mover "uma tela" é -(100 / slideCount)%, não -100%.
+    track.style.transform = `translateX(-${current * (100 / slideCount)}%)`;
+    viewport.style.height = `${slides[current].offsetHeight}px`;
     dots.forEach((dot, i) => dot.setAttribute("aria-pressed", String(i === current)));
   };
+
+  // Cada tela só tem a altura do seu próprio conteúdo, não a da maior — evita
+  // um card enorme quando o slide ativo (ícones) é bem mais curto que o outro (form).
+  goTo(0);
+  window.addEventListener("resize", () => goTo(current));
 
   dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
   prevBtn.addEventListener("click", () => goTo(current - 1));
