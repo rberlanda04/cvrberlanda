@@ -69,52 +69,23 @@
   "competitions": {
     "heading": "Olimpíadas, competições e eventos",
     "intro": "Projetos de estudantes mentorados em olimpíadas científicas, hackathons e eventos maker ao longo dos últimos anos.",
-    "items": [
-      {
-        "acronym": "OBT",
-        "description": "Olimpíada Brasileira de Tecnologia",
-        "logo": "assets/logos/obt.png"
-      },
-      {
-        "acronym": "OBES",
-        "description": "Olimpíada Brasileira de Empreendedorismo Social",
-        "logo": "assets/logos/obes.jpg"
-      },
-      {
-        "acronym": "OBA",
-        "description": "Olimpíada Brasileira de Astronomia e Astronáutica",
-        "logo": "assets/logos/oba.png"
-      },
-      {
-        "acronym": "OBAFOG",
-        "description": "Olimpíada Brasileira de Foguetes",
-        "logo": "assets/logos/obafog-badge.jpg"
-      },
-      {
-        "acronym": "OBR",
-        "description": "Olimpíada Brasileira de Robótica",
-        "logo": "assets/logos/obr.png"
-      },
-      {
-        "acronym": "FMR",
-        "description": "Festival Marista de Robótica",
-        "logo": "assets/logos/fmr.jpg"
-      },
-      {
-        "acronym": "FCPUCPR",
-        "description": "Festival de Ciências PUCPR",
-        "logo": "assets/logos/fcpucpr.png"
-      },
-      {
-        "acronym": "PROGRAMAR",
-        "description": "Hackathon Programar",
-        "logo": "assets/logos/programar.jpg"
-      },
-      {
-        "acronym": "Eventos Maker",
-        "description": "Feiras e mostras de cultura maker.",
-        "logo": "assets/logos/maker.png"
-      }
+    "catalog": {
+      "OBT": { "description": "Olimpíada Brasileira de Tecnologia", "logo": "assets/logos/obt.png" },
+      "OBES": { "description": "Olimpíada Brasileira de Empreendedorismo Social", "logo": "assets/logos/obes.jpg" },
+      "OBA": { "description": "Olimpíada Brasileira de Astronomia e Astronáutica", "logo": "assets/logos/oba.png" },
+      "OBAFOG": { "description": "Olimpíada Brasileira de Foguetes", "logo": "assets/logos/obafog-badge.jpg" },
+      "OBR": { "description": "Olimpíada Brasileira de Robótica", "logo": "assets/logos/obr.png" },
+      "FMR": { "description": "Festival Marista de Robótica", "logo": "assets/logos/fmr.jpg" },
+      "FCPUCPR": { "description": "Festival de Ciências PUCPR", "logo": "assets/logos/fcpucpr.png" },
+      "PROGRAMAR": { "description": "Hackathon Programar", "logo": "assets/logos/programar.jpg" },
+      "Eventos Maker": { "description": "Feiras e mostras de cultura maker.", "logo": "assets/logos/maker.png" },
+      "Conecta Startup SEBRAE": { "description": "", "logo": "" }
+    },
+    "byYear": [
+      { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
+      { "year": "2025", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FMR", "FCPUCPR", "PROGRAMAR"] },
+      { "year": "2024", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FCPUCPR", "PROGRAMAR"] },
+      { "year": "2022", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "Conecta Startup SEBRAE"] }
     ],
     "footnote": ""
   },

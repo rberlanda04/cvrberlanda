@@ -366,48 +366,147 @@ function setupGithubToggle() {
 }
 
 // Carrossel de 2 slides no Contato: contatos rápidos <-> formulário.
-function setupContactCarousel() {
-  const viewport = document.querySelector(".contact-carousel-viewport");
-  const track = document.getElementById("contact-carousel-track");
-  const slides = Array.from(track.children);
-  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
-  const prevBtn = document.getElementById("contact-carousel-prev");
-  const nextBtn = document.getElementById("contact-carousel-next");
-  const slideCount = slides.length;
+// Formulário de contato em etapas: um campo por vez, com validação própria
+// (o form usa novalidate — a validação e as mensagens de erro são só nossas).
+function setupContactWizard() {
+  const viewport = document.querySelector(".wizard-viewport");
+  const track = document.getElementById("wizard-track");
+  const steps = Array.from(track.children);
+  const stepCount = steps.length;
+  const progressBar = document.getElementById("wizard-progress-bar");
+  const dotsWrap = document.getElementById("wizard-dots");
+  const backBtn = document.getElementById("wizard-back");
+  const nextBtn = document.getElementById("wizard-next");
+  const form = document.getElementById("contact-form");
   let current = 0;
 
-  const goTo = (index) => {
-    current = (index + slideCount) % slideCount;
-    // translateX em % é relativo à largura do próprio track (slideCount * 100%),
-    // então mover "uma tela" é -(100 / slideCount)%, não -100%.
-    track.style.transform = `translateX(-${current * (100 / slideCount)}%)`;
-    viewport.style.height = `${slides[current].offsetHeight}px`;
-    dots.forEach((dot, i) => dot.setAttribute("aria-pressed", String(i === current)));
+  const fields = [
+    {
+      input: document.getElementById("contact-name"),
+      error: document.getElementById("error-name"),
+      validate: (v) => v.trim().length >= 2,
+      message: "Digite seu nome pra continuar.",
+    },
+    {
+      input: document.getElementById("contact-subject"),
+      error: document.getElementById("error-subject"),
+      validate: (v) => v.trim().length >= 3,
+      message: "Conta rapidinho o assunto.",
+    },
+    {
+      input: document.getElementById("contact-message"),
+      error: document.getElementById("error-message"),
+      validate: (v) => v.trim().length >= 10,
+      message: "Escreva uma mensagem um pouco mais completa (pelo menos 10 caracteres).",
+    },
+  ];
+
+  dotsWrap.innerHTML = "";
+  const dots = fields.map(() => {
+    const dot = el("span", "wizard-dot");
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  const updateUI = () => {
+    track.style.transform = `translateX(-${current * (100 / stepCount)}%)`;
+    viewport.style.height = `${steps[current].offsetHeight}px`;
+    progressBar.style.width = `${((current + 1) / stepCount) * 100}%`;
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === current));
+    backBtn.classList.toggle("is-hidden", current === 0);
+    nextBtn.textContent = current === stepCount - 1 ? "Enviar mensagem" : "Próximo";
   };
 
-  // Cada tela só tem a altura do seu próprio conteúdo, não a da maior — evita
-  // um card enorme quando o slide ativo (ícones) é bem mais curto que o outro (form).
-  goTo(0);
-  window.addEventListener("resize", () => goTo(current));
+  const showError = (index, show) => {
+    fields[index].error.textContent = show ? fields[index].message : "";
+    fields[index].input.classList.toggle("has-error", show);
+    if (show) {
+      fields[index].input.classList.remove("shake");
+      void fields[index].input.offsetWidth; // força reflow pra reiniciar a animação
+      fields[index].input.classList.add("shake");
+    }
+  };
 
-  dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
-  prevBtn.addEventListener("click", () => goTo(current - 1));
-  nextBtn.addEventListener("click", () => goTo(current + 1));
+  const validateCurrent = () => {
+    const field = fields[current];
+    const valid = field.validate(field.input.value);
+    showError(current, !valid);
+    return valid;
+  };
+
+  const goTo = (index) => {
+    current = Math.max(0, Math.min(stepCount - 1, index));
+    updateUI();
+    fields[current].input.focus({ preventScroll: true });
+  };
+
+  const submitWizard = () => {
+    const recipient = form.dataset.recipient;
+    if (!recipient) return;
+    const name = fields[0].input.value.trim();
+    const subject = fields[1].input.value.trim();
+    const message = fields[2].input.value.trim();
+    const body = `${message}\n\n— ${name}`;
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  nextBtn.addEventListener("click", () => {
+    if (!validateCurrent()) return;
+    if (current < stepCount - 1) goTo(current + 1);
+    else submitWizard();
+  });
+  backBtn.addEventListener("click", () => goTo(current - 1));
+  form.addEventListener("submit", (event) => event.preventDefault());
+
+  fields.forEach((field, index) => {
+    field.input.addEventListener("input", () => showError(index, false));
+    field.input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && field.input.tagName !== "TEXTAREA") {
+        event.preventDefault();
+        nextBtn.click();
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => updateUI());
+  updateUI();
 }
 
 function renderCompetitions(data) {
   setText("competitions-heading", data.competitions.heading);
   setText("competitions-intro", data.competitions.intro);
   setText("competitions-footnote", data.competitions.footnote);
+
+  const catalog = data.competitions.catalog || {};
   const grid = document.getElementById("competitions-grid");
-  grid.innerHTML = "";
-  data.competitions.items.forEach((item) => {
-    const li = el("li", "chip-card chip-featured");
-    li.appendChild(createLogoBadge({ logo: item.logo, label: item.acronym, size: 64 }));
-    li.appendChild(el("p", "chip-acronym", item.acronym));
-    li.appendChild(el("p", "chip-desc", item.description));
-    grid.appendChild(li);
+
+  const renderYear = (yearEntry) => {
+    grid.innerHTML = "";
+    yearEntry.items.forEach((acronym) => {
+      const entry = catalog[acronym] || {};
+      const li = el("li", "chip-card chip-featured");
+      li.appendChild(createLogoBadge({ logo: entry.logo, label: acronym, size: 84 }));
+      li.appendChild(el("p", "chip-acronym", acronym));
+      if (entry.description) li.appendChild(el("p", "chip-desc", entry.description));
+      grid.appendChild(li);
+    });
+  };
+
+  const byYear = data.competitions.byYear || [];
+  const yearsWrap = document.getElementById("competitions-years");
+  yearsWrap.innerHTML = "";
+  byYear.forEach((yearEntry, index) => {
+    const btn = el("button", "stats-year-tab", yearEntry.year);
+    btn.type = "button";
+    btn.setAttribute("aria-pressed", String(index === 0));
+    btn.addEventListener("click", () => {
+      yearsWrap.querySelectorAll(".stats-year-tab").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      renderYear(yearEntry);
+    });
+    yearsWrap.appendChild(btn);
   });
+  if (byYear.length) renderYear(byYear[0]);
 }
 
 function renderMentored(data) {
@@ -514,19 +613,9 @@ function renderContact(data) {
 
   setText("contact-location", data.profile.location);
 
-  // Formulário sem backend: monta um mailto: com os dados preenchidos.
+  // Formulário sem backend: o wizard monta um mailto: com os dados preenchidos.
   const form = document.getElementById("contact-form");
-  const recipient = (data.profile.emails && data.profile.emails[0] && data.profile.emails[0].address) || "";
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (!recipient) return;
-    const name = form.name.value.trim();
-    const subject = form.subject.value.trim();
-    const message = form.message.value.trim();
-    const body = `${message}\n\n— ${name}`;
-    const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-  });
+  form.dataset.recipient = (data.profile.emails && data.profile.emails[0] && data.profile.emails[0].address) || "";
 }
 
 function renderProfile(data) {
@@ -618,5 +707,5 @@ setupThemeToggle();
 setupRevealAnimations();
 setupTimelineExpand();
 setupGithubToggle();
-setupContactCarousel();
+setupContactWizard();
 init();

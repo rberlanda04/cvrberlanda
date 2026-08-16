@@ -112,6 +112,7 @@
       <div class="container">
         <h2 class="section-title" id="competitions-heading">Olimpíadas, competições e eventos</h2>
         <p class="section-intro" id="competitions-intro"></p>
+        <div class="stats-years" id="competitions-years"></div>
         <ul class="chip-grid" id="competitions-grid"></ul>
         <p class="footnote" id="competitions-footnote"></p>
       </div>
@@ -144,45 +145,53 @@
 
     <!-- CONTATO -->
     <section class="section section-alt" id="contato">
-      <div class="container contact-grid">
-        <div class="contact-carousel">
-          <button class="carousel-arrow carousel-arrow-prev" id="contact-carousel-prev" aria-label="Slide anterior">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
+      <div class="container contact-layout">
+        <div class="contact-intro-col">
+          <p class="contact-eyebrow">Vamos conversar?</p>
+          <h2 class="section-title" id="contact-heading">Contato</h2>
+          <p class="contact-lead">Responde em poucos passos — cai direto no e-mail.</p>
+          <ul class="contact-icons" id="contact-icons"></ul>
+          <p class="contact-location" id="contact-location"></p>
+        </div>
 
-          <div class="contact-carousel-viewport">
-            <div class="contact-carousel-track" id="contact-carousel-track">
-              <div class="contact-slide">
-                <ul class="contact-icons" id="contact-icons"></ul>
-                <p class="contact-location" id="contact-location"></p>
-              </div>
-              <div class="contact-slide">
-                <form class="contact-form" id="contact-form" novalidate>
-                  <div class="form-field">
-                    <label for="contact-name">Nome</label>
-                    <input type="text" id="contact-name" name="name" autocomplete="name" required />
-                  </div>
-                  <div class="form-field">
-                    <label for="contact-subject">Assunto</label>
-                    <input type="text" id="contact-subject" name="subject" required />
-                  </div>
-                  <div class="form-field">
-                    <label for="contact-message">Mensagem</label>
-                    <textarea id="contact-message" name="message" rows="4" required></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-                </form>
-              </div>
-            </div>
+        <div class="contact-wizard">
+          <div class="wizard-progress-track">
+            <div class="wizard-progress-bar" id="wizard-progress-bar"></div>
           </div>
 
-          <button class="carousel-arrow carousel-arrow-next" id="contact-carousel-next" aria-label="Próximo slide">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
-        <div class="carousel-dots" id="contact-carousel-dots">
-          <button class="carousel-dot" data-slide="0" aria-label="Ver contatos rápidos" aria-pressed="true"></button>
-          <button class="carousel-dot" data-slide="1" aria-label="Ver formulário de contato" aria-pressed="false"></button>
+          <form class="wizard-form" id="contact-form" novalidate>
+            <div class="wizard-viewport">
+              <div class="wizard-track" id="wizard-track">
+                <div class="wizard-step">
+                  <span class="wizard-step-count">1 de 3</span>
+                  <label for="contact-name">Qual é o seu nome?</label>
+                  <input type="text" id="contact-name" name="name" autocomplete="name" placeholder="Seu nome" />
+                  <p class="field-error" id="error-name" role="alert"></p>
+                </div>
+                <div class="wizard-step">
+                  <span class="wizard-step-count">2 de 3</span>
+                  <label for="contact-subject">Sobre o que você quer falar?</label>
+                  <input type="text" id="contact-subject" name="subject" placeholder="Ex.: robótica na minha escola" />
+                  <p class="field-error" id="error-subject" role="alert"></p>
+                </div>
+                <div class="wizard-step">
+                  <span class="wizard-step-count">3 de 3</span>
+                  <label for="contact-message">Sua mensagem</label>
+                  <textarea id="contact-message" name="message" rows="4" placeholder="Conta um pouco mais..."></textarea>
+                  <p class="field-error" id="error-message" role="alert"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="wizard-nav">
+              <button type="button" class="wizard-nav-btn wizard-nav-back" id="wizard-back">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                Voltar
+              </button>
+              <div class="wizard-dots" id="wizard-dots"></div>
+              <button type="button" class="btn btn-primary wizard-nav-next" id="wizard-next">Próximo</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
