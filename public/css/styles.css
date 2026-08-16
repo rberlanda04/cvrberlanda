@@ -1242,7 +1242,7 @@ a.chip-acronym:hover { text-decoration: underline; }
    Painel admin (/admin) — escondido, protegido por login
    ========================================================= */
 .admin-page { min-height: 100vh; background: var(--bg); }
-.admin-login-wrap {
+.admin-login-wrap:not([hidden]) {
   min-height: 100vh;
   display: flex;
   align-items: center;
