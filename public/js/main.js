@@ -386,6 +386,12 @@ function setupContactWizard() {
       message: "Digite seu nome pra continuar.",
     },
     {
+      input: document.getElementById("contact-email"),
+      error: document.getElementById("error-email"),
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+      message: "Digite um e-mail válido.",
+    },
+    {
       input: document.getElementById("contact-subject"),
       error: document.getElementById("error-subject"),
       validate: (v) => v.trim().length >= 3,
@@ -456,14 +462,16 @@ function setupContactWizard() {
 
   const submitWizard = async () => {
     const name = fields[0].input.value.trim();
-    const subject = fields[1].input.value.trim();
-    const message = fields[2].input.value.trim();
+    const email = fields[1].input.value.trim();
+    const subject = fields[2].input.value.trim();
+    const message = fields[3].input.value.trim();
 
     nextBtn.disabled = true;
     nextBtn.textContent = "Enviando...";
     try {
       await addDoc(collection(db, "contactMessages"), {
         name,
+        email,
         subject,
         message,
         createdAt: serverTimestamp(),
@@ -473,7 +481,7 @@ function setupContactWizard() {
       console.error("Falha ao gravar mensagem no Firestore, usando e-mail como alternativa", err);
       const recipient = form.dataset.recipient;
       if (recipient) {
-        const body = `${message}\n\n— ${name}`;
+        const body = `${message}\n\n— ${name} (${email})`;
         window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
       nextBtn.disabled = false;
@@ -626,8 +634,12 @@ async function loadApprovedMentoredProjects(grid) {
     const snapshot = await getDocs(
       query(collection(db, "projectSubmissions"), where("status", "==", "approved"))
     );
-    snapshot.forEach((docSnap) => {
-      const submission = docSnap.data();
+    // Ordenados pela nota (1-10) dada no painel /admin ao aprovar — os
+    // projetos mais bem avaliados aparecem primeiro.
+    const submissions = snapshot.docs
+      .map((docSnap) => docSnap.data())
+      .sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    submissions.forEach((submission) => {
       grid.appendChild(
         buildMentoredCard({
           title: submission.name,
@@ -638,7 +650,7 @@ async function loadApprovedMentoredProjects(grid) {
         })
       );
     });
-    if (!snapshot.empty) updateMentoredEmptyState(grid);
+    if (submissions.length) updateMentoredEmptyState(grid);
   } catch (err) {
     console.error("Falha ao carregar projetos aprovados", err);
   }

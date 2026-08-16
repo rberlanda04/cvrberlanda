@@ -239,7 +239,7 @@ h1, h2, h3, p { margin: 0; }
 .hero-avatar {
   position: relative;
   justify-self: center;
-  width: clamp(140px, 20vw, 220px);
+  width: clamp(200px, 28vw, 340px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -1405,4 +1405,23 @@ a.chip-acronym:hover { text-decoration: underline; }
 }
 .admin-card-actions .wizard-nav-btn { border: 1px solid var(--surface-border); border-radius: var(--radius-md); }
 .admin-card-actions button:disabled { opacity: 0.5; cursor: default; }
+.admin-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.admin-rating-input {
+  width: 3.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.admin-rating-input.has-error { border-color: #dc2626; }
 

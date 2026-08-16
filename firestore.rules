@@ -14,10 +14,13 @@ service cloud.firestore {
     match /contactMessages/{messageId} {
       allow read: if isAdmin();
       allow update, delete: if false;
-      allow create: if request.resource.data.keys().hasOnly(['name', 'subject', 'message', 'createdAt'])
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'subject', 'message', 'createdAt'])
         && request.resource.data.name is string
         && request.resource.data.name.size() > 0
         && request.resource.data.name.size() < 200
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 0
+        && request.resource.data.email.size() < 200
         && request.resource.data.subject is string
         && request.resource.data.subject.size() > 0
         && request.resource.data.subject.size() < 300
@@ -49,8 +52,12 @@ service cloud.firestore {
         && request.resource.data.ods.size() > 0
         && request.resource.data.status == 'pending';
       allow update: if isAdmin()
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
-        && request.resource.data.status in ['pending', 'approved', 'rejected'];
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'rating'])
+        && request.resource.data.status in ['pending', 'approved', 'rejected']
+        && (request.resource.data.status != 'approved'
+          || (request.resource.data.rating is int
+            && request.resource.data.rating >= 1
+            && request.resource.data.rating <= 10));
     }
 
     // Bloqueia qualquer outra coleção por padrão.

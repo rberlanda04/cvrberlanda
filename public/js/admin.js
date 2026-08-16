@@ -87,6 +87,18 @@ async function loadProjects() {
       ${data.link ? `<a class="timeline-link" href="${data.link}" target="_blank" rel="noopener noreferrer">Ver link ${"↗"}</a>` : ""}
     `;
 
+    const ratingWrap = el("label", "admin-rating");
+    ratingWrap.innerHTML = `Nota (1-10)`;
+    const ratingInput = document.createElement("input");
+    ratingInput.type = "number";
+    ratingInput.min = "1";
+    ratingInput.max = "10";
+    ratingInput.step = "1";
+    ratingInput.className = "admin-rating-input";
+    ratingInput.value = data.rating || "";
+    ratingWrap.appendChild(ratingInput);
+    card.appendChild(ratingWrap);
+
     const actions = el("div", "admin-card-actions");
     const approveBtn = el("button", "btn btn-primary admin-approve-btn", "Aprovar");
     const rejectBtn = el("button", "wizard-nav-btn", "Reprovar");
@@ -96,8 +108,15 @@ async function loadProjects() {
     rejectBtn.disabled = data.status === "rejected";
 
     approveBtn.addEventListener("click", async () => {
+      const rating = Number(ratingInput.value);
+      if (!Number.isInteger(rating) || rating < 1 || rating > 10) {
+        ratingInput.classList.add("has-error");
+        ratingInput.focus();
+        return;
+      }
+      ratingInput.classList.remove("has-error");
       approveBtn.disabled = true;
-      await updateDoc(doc(db, "projectSubmissions", docSnap.id), { status: "approved" });
+      await updateDoc(doc(db, "projectSubmissions", docSnap.id), { status: "approved", rating });
       loadProjects();
     });
     rejectBtn.addEventListener("click", async () => {
@@ -138,7 +157,9 @@ async function loadMessages() {
       <div class="admin-card-head">
         <div>
           <p class="admin-card-title">${data.name || "(sem nome)"}</p>
-          <p class="admin-card-meta">${formatDate(data.createdAt)}</p>
+          <p class="admin-card-meta">
+            ${data.email ? `<a href="mailto:${data.email}">${data.email}</a> · ` : ""}${formatDate(data.createdAt)}
+          </p>
         </div>
       </div>
       <p class="admin-card-title" style="font-size: 0.95rem;">${data.subject || ""}</p>
