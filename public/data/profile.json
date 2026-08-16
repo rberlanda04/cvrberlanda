@@ -79,7 +79,7 @@
       "FCPUCPR": { "description": "Festival de Ciências PUCPR", "logo": "assets/logos/fcpucpr.png" },
       "PROGRAMAR": { "description": "Hackathon Programar", "logo": "assets/logos/programar.jpg" },
       "Eventos Maker": { "description": "Feiras e mostras de cultura maker.", "logo": "assets/logos/maker.png" },
-      "Conecta Startup SEBRAE": { "description": "", "logo": "" }
+      "Conecta Startup SEBRAE": { "description": "", "logo": "assets/logos/sebrasestartups.png" }
     },
     "byYear": [
       { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
