@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Mensagens do formulário de contato do site: qualquer visitante pode
+    // criar uma mensagem nova, mas ninguém consegue ler, editar ou apagar
+    // pelo navegador — só você, pelo Console do Firebase.
+    match /contactMessages/{messageId} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly(['name', 'subject', 'message', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() < 200
+        && request.resource.data.subject is string
+        && request.resource.data.subject.size() > 0
+        && request.resource.data.subject.size() < 300
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() < 5000;
+    }
+
+    // Bloqueia qualquer outra coleção por padrão.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

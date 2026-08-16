@@ -194,10 +194,17 @@
                     placeholder="Conta um pouco mais..."></textarea>
                   <p class="field-error" id="error-message" role="alert"></p>
                 </div>
+                <div class="wizard-step wizard-step-success">
+                  <svg class="wizard-success-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  <p class="wizard-success-title">Mensagem enviada!</p>
+                  <p class="wizard-success-text" id="wizard-success-text">Obrigado pelo contato — te respondo em breve.</p>
+                </div>
               </div>
             </div>
 
-            <div class="wizard-nav">
+            <div class="wizard-nav" id="wizard-nav">
               <button type="button" class="wizard-nav-btn wizard-nav-back" id="wizard-back">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M15 18l-6-6 6-6" />
@@ -219,7 +226,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

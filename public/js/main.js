@@ -2,6 +2,28 @@
 // Trocar esse arquivo JSON é o suficiente para reaproveitar a estrutura
 // como um produto para outra pessoa/escola.
 
+// Firebase: só usado pra gravar as mensagens do formulário de contato no
+// Firestore (coleção "contactMessages"). As regras de segurança (ver
+// firestore.rules) permitem só criar mensagem — ninguém lê/edita pelo site.
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCKzvn8KwLZz0oo0o_FP0NmMndIjuTjS8g",
+  authDomain: "rberlanda-f53b5.firebaseapp.com",
+  projectId: "rberlanda-f53b5",
+  storageBucket: "rberlanda-f53b5.firebasestorage.app",
+  messagingSenderId: "305440619750",
+  appId: "1:305440619750:web:47d0b4c542b998ab1f0f27",
+};
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
 const EXTERNAL_LINK_ICON = `
   <svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M10 14 20 4"/><path d="M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>
 `;
@@ -342,10 +364,11 @@ function setupTimelineExpand() {
 function setupContactWizard() {
   const viewport = document.querySelector(".wizard-viewport");
   const track = document.getElementById("wizard-track");
-  const steps = Array.from(track.children);
-  const stepCount = steps.length;
+  const steps = Array.from(track.children); // 3 campos + 1 tela de sucesso
+  const slideCount = steps.length;
   const progressBar = document.getElementById("wizard-progress-bar");
   const dotsWrap = document.getElementById("wizard-dots");
+  const nav = document.getElementById("wizard-nav");
   const backBtn = document.getElementById("wizard-back");
   const nextBtn = document.getElementById("wizard-next");
   const form = document.getElementById("contact-form");
@@ -371,6 +394,8 @@ function setupContactWizard() {
       message: "Escreva uma mensagem um pouco mais completa (pelo menos 10 caracteres).",
     },
   ];
+  const fieldCount = fields.length;
+  const successIndex = slideCount - 1;
 
   dotsWrap.innerHTML = "";
   const dots = fields.map(() => {
@@ -380,12 +405,13 @@ function setupContactWizard() {
   });
 
   const updateUI = () => {
-    track.style.transform = `translateX(-${current * (100 / stepCount)}%)`;
+    track.style.transform = `translateX(-${current * (100 / slideCount)}%)`;
     viewport.style.height = `${steps[current].offsetHeight}px`;
-    progressBar.style.width = `${((current + 1) / stepCount) * 100}%`;
+    const progressStep = Math.min(current + 1, fieldCount);
+    progressBar.style.width = `${(progressStep / fieldCount) * 100}%`;
     dots.forEach((dot, i) => dot.classList.toggle("is-active", i === current));
     backBtn.classList.toggle("is-hidden", current === 0);
-    nextBtn.textContent = current === stepCount - 1 ? "Enviar mensagem" : "Próximo";
+    nextBtn.textContent = current === fieldCount - 1 ? "Enviar mensagem" : "Próximo";
   };
 
   const showError = (index, show) => {
@@ -406,24 +432,47 @@ function setupContactWizard() {
   };
 
   const goTo = (index) => {
-    current = Math.max(0, Math.min(stepCount - 1, index));
+    current = Math.max(0, Math.min(fieldCount - 1, index));
     updateUI();
     fields[current].input.focus({ preventScroll: true });
   };
 
-  const submitWizard = () => {
-    const recipient = form.dataset.recipient;
-    if (!recipient) return;
+  const showSuccess = () => {
+    current = successIndex;
+    updateUI();
+    nav.style.display = "none";
+  };
+
+  const submitWizard = async () => {
     const name = fields[0].input.value.trim();
     const subject = fields[1].input.value.trim();
     const message = fields[2].input.value.trim();
-    const body = `${message}\n\n— ${name}`;
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Enviando...";
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        name,
+        subject,
+        message,
+        createdAt: serverTimestamp(),
+      });
+      showSuccess();
+    } catch (err) {
+      console.error("Falha ao gravar mensagem no Firestore, usando e-mail como alternativa", err);
+      const recipient = form.dataset.recipient;
+      if (recipient) {
+        const body = `${message}\n\n— ${name}`;
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+      nextBtn.disabled = false;
+      nextBtn.textContent = "Enviar mensagem";
+    }
   };
 
   nextBtn.addEventListener("click", () => {
     if (!validateCurrent()) return;
-    if (current < stepCount - 1) goTo(current + 1);
+    if (current < fieldCount - 1) goTo(current + 1);
     else submitWizard();
   });
   backBtn.addEventListener("click", () => goTo(current - 1));

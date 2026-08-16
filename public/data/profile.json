@@ -82,8 +82,8 @@
       "Conecta Startup SEBRAE": { "description": "", "logo": "assets/logos/sebrasestartups.png" }
     },
     "byYear": [
-      { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
-      { "year": "2025", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FMR", "FCPUCPR", "PROGRAMAR"] },
+      { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
+      { "year": "2025", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR"] },
       { "year": "2024", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FCPUCPR", "PROGRAMAR"] },
       { "year": "2022", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "Conecta Startup SEBRAE"] }
     ],
@@ -226,6 +226,14 @@
       {
         "title": "Software Profissional",
         "items": [
+          {
+            "label": "React",
+            "logo": "assets/logos/tool-react.svg"
+          },
+          {
+            "label": "MongoDB",
+            "logo": "assets/logos/tool-mongodb.svg"
+          },
           {
             "label": "Python",
             "logo": "assets/logos/python.jpg"
