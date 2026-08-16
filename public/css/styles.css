@@ -829,19 +829,68 @@ button:focus-visible {
 }
 
 /* =========================================================
-   Cadastro de projeto — cartão com link para formulário externo
+   Cadastro de projeto — página escondida (não linkada no site)
    ========================================================= */
+.project-form-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: var(--bg);
+}
 .project-form-card {
+  width: 100%;
   max-width: 480px;
-  margin-inline: auto;
   background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   padding: 2.5rem 2rem;
-  text-align: center;
 }
+.project-form-card .section-title,
+.project-form-card .section-intro { text-align: center; }
 .project-form-card .section-intro { margin-inline: auto; margin-bottom: 1.75rem; }
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.pf-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.pf-field label { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.pf-optional { font-weight: 400; color: var(--text-muted); }
+.pf-field input,
+.pf-field select,
+.pf-field textarea {
+  font: inherit;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.pf-field input:focus,
+.pf-field select:focus,
+.pf-field textarea:focus { outline: none; border-color: var(--color-primary); }
+.pf-field input.has-error,
+.pf-field select.has-error,
+.pf-field textarea.has-error { border-color: #dc2626; }
+.pf-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+.project-form .btn { align-self: stretch; text-align: center; }
+.project-form-success {
+  text-align: center;
+  padding-block: 1rem;
+}
+.project-form-success .wizard-success-icon,
+.project-form-success .wizard-success-title,
+.project-form-success .wizard-success-text { margin-inline: auto; }
 
 /* =========================================================
    Competitions chips

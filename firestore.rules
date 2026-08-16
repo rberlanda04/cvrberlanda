@@ -19,6 +19,26 @@ service cloud.firestore {
         && request.resource.data.message.size() < 5000;
     }
 
+    // Projetos enviados pela página escondida de cadastro (cadastro-projeto.html):
+    // qualquer pessoa com o link pode enviar um projeto, mas ninguém lê, edita
+    // ou apaga pelo navegador — a revisão de quais entram no portfólio é manual,
+    // direto no Console do Firebase (Firestore Database → Dados).
+    match /projectSubmissions/{submissionId} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly(['name', 'logo', 'description', 'ods', 'link', 'status', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() < 200
+        && request.resource.data.logo is string
+        && request.resource.data.logo.size() > 0
+        && request.resource.data.description is string
+        && request.resource.data.description.size() > 0
+        && request.resource.data.description.size() < 2000
+        && request.resource.data.ods is string
+        && request.resource.data.ods.size() > 0
+        && request.resource.data.status == 'pending';
+    }
+
     // Bloqueia qualquer outra coleção por padrão.
     match /{document=**} {
       allow read, write: if false;

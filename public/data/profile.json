@@ -79,12 +79,14 @@
       "FCPUCPR": { "description": "Festival de Ciências PUCPR", "logo": "assets/logos/fcpucpr.png" },
       "PROGRAMAR": { "description": "Hackathon Programar", "logo": "assets/logos/programar.jpg" },
       "Eventos Maker": { "description": "Feiras e mostras de cultura maker.", "logo": "assets/logos/maker.png" },
-      "Conecta Startup SEBRAE": { "description": "", "logo": "assets/logos/sebrasestartups.png" }
+      "Conecta Startup SEBRAE": { "description": "", "logo": "assets/logos/sebrasestartups.png" },
+      "CPBR15": { "description": "Campus Party Brasil 15", "logo": "assets/logos/cpbr15.png" }
     },
     "byYear": [
       { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
       { "year": "2025", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR"] },
       { "year": "2024", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FCPUCPR", "PROGRAMAR"] },
+      { "year": "2023", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "CPBR15"] },
       { "year": "2022", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "Conecta Startup SEBRAE"] }
     ],
     "footnote": ""
@@ -536,12 +538,6 @@
         "url": "https://learnfreehands.vercel.app"
       }
     ]
-  },
-  "projectSubmission": {
-    "heading": "Cadastre o projeto da sua turma",
-    "intro": "Tem um projeto de sala de aula pra mostrar? Preencha o formulário — nome do projeto, logo, descrição, ODS relacionado e link (opcional).",
-    "buttonLabel": "Cadastrar projeto",
-    "url": "https://forms.gle/SEU-FORMULARIO-AQUI"
   },
   "contact": {
     "heading": "Contato"

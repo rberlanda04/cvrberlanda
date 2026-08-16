@@ -598,15 +598,6 @@ function renderMentored(data) {
 }
 
 // Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em português.
-function renderProjectForm(data) {
-  const info = data.projectSubmission;
-  setText("project-form-heading", info.heading);
-  setText("project-form-intro", info.intro);
-  const link = document.getElementById("project-form-link");
-  link.href = info.url;
-  link.textContent = info.buttonLabel;
-}
-
 function renderContact(data) {
   setText("contact-heading", data.contact.heading);
 
@@ -690,7 +681,6 @@ async function init() {
     renderTimeline(data);
     renderCompetitions(data);
     renderMentored(data);
-    renderProjectForm(data);
     renderContact(data);
   } catch (err) {
     console.error("Falha ao carregar data/profile.json", err);
