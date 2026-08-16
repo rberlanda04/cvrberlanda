@@ -2,11 +2,17 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Só essa conta pode logar no painel /admin — mesmo que alguém crie
+    // outro usuário no Firebase Auth por engano, essa checagem bloqueia.
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'r.berlanda04@gmail.com';
+    }
+
     // Mensagens do formulário de contato: qualquer visitante pode criar uma
     // mensagem nova. Só quem está logado (você, pelo painel /admin) consegue
     // ler — ninguém edita ou apaga pelo navegador.
     match /contactMessages/{messageId} {
-      allow read: if request.auth != null;
+      allow read: if isAdmin();
       allow update, delete: if false;
       allow create: if request.resource.data.keys().hasOnly(['name', 'subject', 'message', 'createdAt'])
         && request.resource.data.name is string
@@ -28,7 +34,7 @@ service cloud.firestore {
     // profile.json). Só quem está logado pode mudar o status (aprovar/
     // reprovar), e só esse campo.
     match /projectSubmissions/{submissionId} {
-      allow read: if request.auth != null || resource.data.status == 'approved';
+      allow read: if isAdmin() || resource.data.status == 'approved';
       allow delete: if false;
       allow create: if request.resource.data.keys().hasOnly(['name', 'logo', 'description', 'ods', 'link', 'status', 'createdAt'])
         && request.resource.data.name is string
@@ -42,7 +48,7 @@ service cloud.firestore {
         && request.resource.data.ods is list
         && request.resource.data.ods.size() > 0
         && request.resource.data.status == 'pending';
-      allow update: if request.auth != null
+      allow update: if isAdmin()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
         && request.resource.data.status in ['pending', 'approved', 'rejected'];
     }
