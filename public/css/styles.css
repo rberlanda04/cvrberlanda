@@ -878,6 +878,16 @@ button:focus-visible {
   font-style: italic;
   margin: 0;
 }
+.pf-upload { display: flex; align-items: center; gap: 1rem; }
+.pf-upload-preview {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--surface-border);
+  background: var(--bg-alt);
+}
 .project-form .btn { align-self: stretch; text-align: center; }
 
 /* Grade de seleção múltipla dos 17 ODS (ícones oficiais da ONU) */

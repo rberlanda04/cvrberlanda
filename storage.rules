@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Logos enviados pela página de cadastro de projeto
+    // (cadastro-projeto.html): qualquer pessoa com o link pode enviar uma
+    // imagem (até 5MB). Leitura é pública, porque a imagem precisa
+    // aparecer no currículo depois que o projeto é aprovado. Ninguém
+    // sobrescreve ou apaga um arquivo já enviado.
+    match /projectLogos/{fileName} {
+      allow read: if true;
+      allow create: if request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow update, delete: if false;
+    }
+
+    // Bloqueia qualquer outro caminho por padrão.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

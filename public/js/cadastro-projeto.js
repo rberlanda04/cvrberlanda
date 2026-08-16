@@ -9,6 +9,12 @@ import {
   addDoc,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKzvn8KwLZz0oo0o_FP0NmMndIjuTjS8g",
@@ -20,6 +26,9 @@ const firebaseConfig = {
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
+
+const MAX_LOGO_BYTES = 5 * 1024 * 1024;
 
 // Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em
 // português. Os ícones (assets/logos/ods/ods-N.png) são os oficiais da ONU,
@@ -114,8 +123,11 @@ function init() {
     {
       input: document.getElementById("pf-logo"),
       error: document.getElementById("pf-error-logo"),
-      validate: (v) => isValidUrl(v.trim()),
-      message: "Cole o link de uma imagem (começando com https://).",
+      validate: () => {
+        const file = document.getElementById("pf-logo").files[0];
+        return !!file && file.type.startsWith("image/") && file.size <= MAX_LOGO_BYTES;
+      },
+      message: "Escolha uma imagem (JPG, PNG ou WebP) de até 5MB.",
     },
     {
       input: document.getElementById("pf-description"),
@@ -194,6 +206,18 @@ function init() {
 
   odsGrid.addEventListener("odschange", () => showError(fields[3], false));
 
+  const logoPreview = document.getElementById("pf-logo-preview");
+  fields[1].input.addEventListener("change", () => {
+    const file = fields[1].input.files[0];
+    if (!file) {
+      logoPreview.hidden = true;
+      logoPreview.removeAttribute("src");
+      return;
+    }
+    logoPreview.src = URL.createObjectURL(file);
+    logoPreview.hidden = false;
+  });
+
   const showSuccess = () => {
     current = successIndex;
     updateUI();
@@ -202,11 +226,18 @@ function init() {
 
   const submitForm = async () => {
     nextBtn.disabled = true;
-    nextBtn.textContent = "Enviando...";
+    nextBtn.textContent = "Enviando imagem...";
     try {
+      const file = fields[1].input.files[0];
+      const path = `projectLogos/${Date.now()}-${file.name}`;
+      const fileRef = ref(storage, path);
+      await uploadBytes(fileRef, file);
+      const logoUrl = await getDownloadURL(fileRef);
+
+      nextBtn.textContent = "Enviando...";
       await addDoc(collection(db, "projectSubmissions"), {
         name: fields[0].input.value.trim(),
-        logo: fields[1].input.value.trim(),
+        logo: logoUrl,
         description: fields[2].input.value.trim(),
         ods: Array.from(selectedOds),
         link: fields[4].input.value.trim() || null,
