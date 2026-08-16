@@ -529,6 +529,7 @@
         "stats": [
           { "count": "38", "label": "Turmas" },
           { "count": "689", "label": "Alunos" },
+          { "count": "19", "label": "Equipes" },
           { "count": "45", "label": "Projetos" }
         ]
       },
@@ -537,6 +538,7 @@
         "stats": [
           { "count": "14", "label": "Turmas" },
           { "count": "323", "label": "Alunos" },
+          { "count": "14", "label": "Equipes" },
           { "count": "13", "label": "Projetos" }
         ]
       }
