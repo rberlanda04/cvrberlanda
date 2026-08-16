@@ -529,6 +529,12 @@
       }
     ]
   },
+  "projectSubmission": {
+    "heading": "Cadastre o projeto da sua turma",
+    "intro": "Tem um projeto de sala de aula pra mostrar? Preencha o formulário — nome do projeto, logo, descrição, ODS relacionado e link (opcional).",
+    "buttonLabel": "Cadastrar projeto",
+    "url": "https://forms.gle/SEU-FORMULARIO-AQUI"
+  },
   "contact": {
     "heading": "Contato"
   }

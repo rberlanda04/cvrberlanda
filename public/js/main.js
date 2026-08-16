@@ -189,25 +189,6 @@ function renderRoles(data) {
   });
 }
 
-function renderGithubAccounts(data) {
-  const grid = document.getElementById("github-grid");
-  grid.innerHTML = "";
-  data.githubAccounts.items.forEach((account) => {
-    const li = el("li", "chip-card chip-with-logo");
-    li.appendChild(createLogoBadge({ logo: account.logo, label: account.label, size: 36 }));
-    const body = el(
-      "div",
-      null,
-      `
-      <a class="chip-acronym" href="${account.url}" target="_blank" rel="noopener noreferrer">${account.label}</a>
-      <p class="chip-desc">${account.description}</p>
-    `
-    );
-    li.appendChild(body);
-    grid.appendChild(li);
-  });
-}
-
 function renderTechStack(data) {
   setText("tech-heading", data.techStack.heading);
   setText("tech-intro", data.techStack.intro);
@@ -352,16 +333,6 @@ function setupTimelineExpand() {
       collapseTimeline(list);
       document.getElementById("portfolio").scrollIntoView({ block: "start", behavior: "smooth" });
     }
-  });
-}
-
-function setupGithubToggle() {
-  const btn = document.getElementById("github-toggle");
-  const panel = document.getElementById("github-panel");
-  btn.addEventListener("click", () => {
-    const isOpen = btn.getAttribute("aria-expanded") === "true";
-    btn.setAttribute("aria-expanded", String(!isOpen));
-    panel.style.maxHeight = isOpen ? "0px" : `${panel.scrollHeight}px`;
   });
 }
 
@@ -577,6 +548,16 @@ function renderMentored(data) {
   });
 }
 
+// Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em português.
+function renderProjectForm(data) {
+  const info = data.projectSubmission;
+  setText("project-form-heading", info.heading);
+  setText("project-form-intro", info.intro);
+  const link = document.getElementById("project-form-link");
+  link.href = info.url;
+  link.textContent = info.buttonLabel;
+}
+
 function renderContact(data) {
   setText("contact-heading", data.contact.heading);
 
@@ -654,13 +635,13 @@ async function init() {
     renderProfile(data);
     renderAbout(data);
     renderRoles(data);
-    renderGithubAccounts(data);
     renderSkills(data);
     renderTechStack(data);
     renderPartners(data);
     renderTimeline(data);
     renderCompetitions(data);
     renderMentored(data);
+    renderProjectForm(data);
     renderContact(data);
   } catch (err) {
     console.error("Falha ao carregar data/profile.json", err);
@@ -706,6 +687,5 @@ function setupRevealAnimations() {
 setupThemeToggle();
 setupRevealAnimations();
 setupTimelineExpand();
-setupGithubToggle();
 setupContactWizard();
 init();

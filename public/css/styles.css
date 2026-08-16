@@ -282,7 +282,6 @@ h1, h2, h3, p { margin: 0; }
 .theme-toggle:active,
 .timeline-expand:active,
 .contact-icon-link:active,
-.github-toggle:active,
 .skill-group-header:active,
 .stats-year-tab:active,
 .wizard-nav-back:active {
@@ -830,54 +829,19 @@ button:focus-visible {
 }
 
 /* =========================================================
-   Código aberto — logo do GitHub como gatilho de um collapse
+   Cadastro de projeto — cartão com link para formulário externo
    ========================================================= */
-.github-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+.project-form-card {
+  max-width: 480px;
   margin-inline: auto;
-  background: none;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  padding: 0;
-}
-.github-toggle-logo {
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  background: #ffffff;
+  background: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: var(--radius-md);
-  padding: 12px;
-  box-sizing: border-box;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.github-toggle:hover .github-toggle-logo {
-  transform: translateY(-3px) scale(1.05);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
+  padding: 2.5rem 2rem;
+  text-align: center;
 }
-.github-toggle-chevron {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  fill: none;
-  stroke: var(--text-muted);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform 0.25s ease;
-}
-.github-toggle[aria-expanded="true"] .github-toggle-chevron { transform: rotate(180deg); }
-.github-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-.github-panel .chip-grid { padding-top: 1.5rem; }
+.project-form-card .section-intro { margin-inline: auto; margin-bottom: 1.75rem; }
 
 /* =========================================================
    Competitions chips

@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rogerio H. Berlanda — Currículo & Portfólio</title>
-  <meta name="description" content="Currículo web e portfólio de projetos de robótica, cultura maker e educação em tecnologia." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23155e63'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='%23eefbf9' text-anchor='middle'%3ERB%3C/text%3E%3C/svg%3E" />
+  <meta name="description"
+    content="Currículo web e portfólio de projetos de robótica, cultura maker e educação em tecnologia." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23155e63'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='%23eefbf9' text-anchor='middle'%3ERB%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,6 +19,7 @@
     document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light");
   </script>
 </head>
+
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
@@ -27,8 +31,14 @@
       </a>
 
       <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" />
+          <path
+            d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" />
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" />
+        </svg>
       </button>
     </nav>
   </header>
@@ -101,8 +111,11 @@
         <h2 class="section-title" id="timeline-heading">Linha do tempo — Portfólio</h2>
         <p class="section-intro" id="timeline-intro"></p>
         <ol class="timeline" id="timeline-list"></ol>
-        <button class="timeline-expand" id="timeline-expand" aria-expanded="false" aria-controls="timeline-list" aria-label="Ver linha do tempo completa">
-          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        <button class="timeline-expand" id="timeline-expand" aria-expanded="false" aria-controls="timeline-list"
+          aria-label="Ver linha do tempo completa">
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
         </button>
       </div>
     </section>
@@ -118,21 +131,8 @@
       </div>
     </section>
 
-    <!-- CÓDIGO ABERTO -->
-    <section class="section section-alt" id="codigo-aberto">
-      <div class="container">
-        <button class="github-toggle" id="github-toggle" aria-expanded="false" aria-controls="github-panel" aria-label="Código aberto — ver repositórios">
-          <img class="github-toggle-logo" src="assets/logos/tool-github.svg" alt="Código aberto" />
-          <svg class="chevron github-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="github-panel" id="github-panel">
-          <ul class="chip-grid" id="github-grid"></ul>
-        </div>
-      </div>
-    </section>
-
     <!-- PROJETOS MENTORADOS -->
-    <section class="section" id="mentorados">
+    <section class="section section-alt" id="mentorados">
       <div class="container">
         <h2 class="section-title" id="mentored-heading">Projetos mentorados</h2>
         <p class="section-intro" id="mentored-intro"></p>
@@ -140,6 +140,19 @@
         <div class="stats-years" id="mentored-stats-years"></div>
         <div class="stats-grid" id="mentored-stats"></div>
         <div class="cards-grid" id="mentored-grid"></div>
+      </div>
+    </section>
+
+    <!-- CADASTRO DE PROJETO -->
+    <section class="section" id="cadastro-projeto">
+      <div class="container">
+        <div class="project-form-card">
+          <h2 class="section-title" id="project-form-heading">Cadastre o projeto da sua turma</h2>
+          <p class="section-intro" id="project-form-intro"></p>
+          <a class="btn btn-primary" id="project-form-link" href="#" target="_blank" rel="noopener noreferrer">
+            Cadastrar projeto
+          </a>
+        </div>
       </div>
     </section>
 
@@ -177,7 +190,8 @@
                 <div class="wizard-step">
                   <span class="wizard-step-count">3 de 3</span>
                   <label for="contact-message">Sua mensagem</label>
-                  <textarea id="contact-message" name="message" rows="4" placeholder="Conta um pouco mais..."></textarea>
+                  <textarea id="contact-message" name="message" rows="4"
+                    placeholder="Conta um pouco mais..."></textarea>
                   <p class="field-error" id="error-message" role="alert"></p>
                 </div>
               </div>
@@ -185,7 +199,9 @@
 
             <div class="wizard-nav">
               <button type="button" class="wizard-nav-btn wizard-nav-back" id="wizard-back">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
                 Voltar
               </button>
               <div class="wizard-dots" id="wizard-dots"></div>
@@ -205,4 +221,5 @@
 
   <script src="js/main.js" defer></script>
 </body>
+
 </html>
