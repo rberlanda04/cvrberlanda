@@ -1207,6 +1207,21 @@ a.chip-acronym:hover { text-decoration: underline; }
   border-radius: 4px;
   padding: 0.1rem 0.4rem;
 }
+/* Acesso ao painel /admin: só aparece de fato ao passar o mouse/focar,
+   pra não chamar atenção de quem só está lendo o currículo. */
+.footer-admin-link {
+  color: var(--text-muted);
+  opacity: 0.25;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem;
+  transition: opacity 0.2s ease;
+}
+.footer-admin-link:hover,
+.footer-admin-link:focus-visible {
+  opacity: 1;
+}
 
 /* =========================================================
    Responsive
