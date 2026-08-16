@@ -158,20 +158,21 @@ function createLogoBadge({ logo, fallbackLogo, label, size = 40, dark = false })
 
 // Usado para o avatar do hero e a marca do menu: tenta mostrar uma imagem
 // real e, se falhar ao carregar, volta ao conteúdo de texto que já estava lá.
-function setImageWithFallback(containerId, src, fallbackText) {
+function setImageWithFallback(containerId, src) {
   const container = document.getElementById(containerId);
   if (!container) return;
   if (!src) return;
 
+  const fallback = container.querySelector("span");
   const img = document.createElement("img");
   img.alt = "";
   img.src = src;
-  img.addEventListener("error", () => img.remove());
+  if (fallback) fallback.style.display = "none";
+  img.addEventListener("error", () => {
+    img.remove();
+    if (fallback) fallback.style.display = "";
+  });
   container.prepend(img);
-  if (fallbackText !== undefined) {
-    const fallback = container.querySelector("span");
-    if (fallback) fallback.textContent = fallbackText;
-  }
 }
 
 function renderAbout(data) {
