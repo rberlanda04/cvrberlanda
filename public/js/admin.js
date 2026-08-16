@@ -56,7 +56,13 @@ async function loadProjects() {
   const empty = document.getElementById("projects-empty");
   list.innerHTML = "";
 
-  const snapshot = await getDocs(query(collection(db, "projectSubmissions"), orderBy("createdAt", "desc")));
+  let snapshot;
+  try {
+    snapshot = await getDocs(query(collection(db, "projectSubmissions"), orderBy("createdAt", "desc")));
+  } catch (err) {
+    empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
+    return;
+  }
   if (snapshot.empty) {
     empty.textContent = "Nenhum projeto enviado ainda.";
     return;
@@ -112,7 +118,13 @@ async function loadMessages() {
   const empty = document.getElementById("messages-empty");
   list.innerHTML = "";
 
-  const snapshot = await getDocs(query(collection(db, "contactMessages"), orderBy("createdAt", "desc")));
+  let snapshot;
+  try {
+    snapshot = await getDocs(query(collection(db, "contactMessages"), orderBy("createdAt", "desc")));
+  } catch (err) {
+    empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
+    return;
+  }
   if (snapshot.empty) {
     empty.textContent = "Nenhuma mensagem ainda.";
     return;
