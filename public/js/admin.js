@@ -15,6 +15,7 @@ import {
   query,
   orderBy,
   getDocs,
+  getDoc,
   doc,
   addDoc,
   updateDoc,
@@ -344,6 +345,7 @@ async function loadProjects() {
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
+  document.getElementById("stat-projects").textContent = snapshot.size;
   if (snapshot.empty) {
     empty.textContent = "Nenhum projeto ainda — clique em \"+ Novo projeto\" pra adicionar o primeiro.";
     return;
@@ -486,6 +488,7 @@ async function loadEvents() {
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
+  document.getElementById("stat-events").textContent = snapshot.size;
   if (snapshot.empty) {
     empty.textContent = "Nenhum evento ainda — clique em \"+ Novo evento\" pra adicionar o primeiro.";
     return;
@@ -564,12 +567,23 @@ async function loadMessages() {
   });
 }
 
+async function loadVisitCount() {
+  const el = document.getElementById("stat-visits");
+  try {
+    const snap = await getDoc(doc(db, "stats", "siteVisits"));
+    el.textContent = snap.exists() ? snap.data().count : 0;
+  } catch (err) {
+    el.textContent = "—";
+  }
+}
+
 /* ---------------------------------------------------------
    Login
    --------------------------------------------------------- */
 function showDashboard() {
   document.getElementById("admin-login-wrap").hidden = true;
   document.getElementById("admin-dashboard").hidden = false;
+  loadVisitCount();
   loadProjects();
   loadEvents();
   loadMessages();

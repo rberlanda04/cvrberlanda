@@ -15,6 +15,9 @@ import {
   where,
   orderBy,
   getDocs,
+  doc,
+  setDoc,
+  increment,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -829,8 +832,16 @@ function setupRevealAnimations() {
   sections.forEach((section) => observer.observe(section));
 }
 
+// Contador simples de acessos ao currículo, mostrado no painel /admin.
+// As firestore.rules só permitem incrementar de 1 em 1 (nunca setar um
+// valor arbitrário), então isso é só um contador, não dado sensível.
+function trackVisit() {
+  setDoc(doc(db, "stats", "siteVisits"), { count: increment(1) }, { merge: true }).catch(() => {});
+}
+
 setupThemeToggle();
 setupRevealAnimations();
 setupTimelineExpand();
 setupContactWizard();
+trackVisit();
 init();

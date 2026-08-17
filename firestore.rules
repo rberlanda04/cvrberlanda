@@ -65,6 +65,17 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Contador de acessos ao currículo (mostrado no painel /admin). Só
+    // permite incrementar de 1 em 1 — ninguém consegue setar um valor
+    // arbitrário nem ler o contador (só o admin lê, pelo painel).
+    match /stats/{statId} {
+      allow read: if isAdmin();
+      allow create: if request.resource.data.keys().hasOnly(['count']) && request.resource.data.count == 1;
+      allow update: if request.resource.data.keys().hasOnly(['count'])
+        && request.resource.data.count == resource.data.count + 1;
+      allow delete: if false;
+    }
+
     // Bloqueia qualquer outra coleção por padrão.
     match /{document=**} {
       allow read, write: if false;
