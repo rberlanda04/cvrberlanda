@@ -542,6 +542,7 @@ async function loadMessages() {
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
+  document.getElementById("stat-messages").textContent = snapshot.size;
   if (snapshot.empty) {
     empty.textContent = "Nenhuma mensagem ainda.";
     return;
