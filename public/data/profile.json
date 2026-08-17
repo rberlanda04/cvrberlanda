@@ -231,7 +231,7 @@
           },
           {
             "label": "RPG Maker Edu",
-            "logo": "assets/logos/rpgmaker.png",
+            "logo": "assets/logos/rpgmaker.jpeg",
             "url": "https://izicodeedurpg.vercel.app/",
             "highlight": true
           }
@@ -521,6 +521,7 @@
         "stats": [
           { "count": "27", "label": "Turmas" },
           { "count": "556", "label": "Alunos" },
+          { "count": "38", "label": "Equipes" },
           { "count": "32", "label": "Projetos" }
         ]
       },
