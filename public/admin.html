@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel — Contatos e Projetos</title>
+  <title>Painel — Portfólio, Eventos e Contatos</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/logos/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,18 +33,58 @@
         <button class="wizard-nav-btn" id="admin-logout">Sair</button>
       </header>
 
+      <nav class="admin-tabs" id="admin-tabs">
+        <button type="button" class="admin-tab" data-tab="projects" aria-selected="true">Portfólio</button>
+        <button type="button" class="admin-tab" data-tab="events" aria-selected="false">Eventos</button>
+        <button type="button" class="admin-tab" data-tab="messages" aria-selected="false">Mensagens</button>
+      </nav>
+
       <div class="container admin-container">
-        <section class="admin-section">
-          <h2 class="section-title">Projetos para avaliar</h2>
-          <p class="section-intro" id="projects-empty">Carregando…</p>
+        <section class="admin-section" id="tab-projects">
+          <div class="admin-section-head">
+            <div>
+              <h2 class="section-title">Portfólio de projetos</h2>
+              <p class="section-intro" id="projects-empty">Carregando…</p>
+            </div>
+            <button type="button" class="btn btn-primary" id="new-project-btn">+ Novo projeto</button>
+          </div>
           <div class="admin-list" id="projects-list"></div>
         </section>
 
-        <section class="admin-section">
+        <section class="admin-section" id="tab-events" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 class="section-title">Eventos</h2>
+              <p class="section-intro" id="events-empty">Carregando…</p>
+            </div>
+            <button type="button" class="btn btn-primary" id="new-event-btn">+ Novo evento</button>
+          </div>
+          <div class="admin-list" id="events-list"></div>
+        </section>
+
+        <section class="admin-section" id="tab-messages" hidden>
           <h2 class="section-title">Mensagens de contato</h2>
           <p class="section-intro" id="messages-empty">Carregando…</p>
           <div class="admin-list" id="messages-list"></div>
         </section>
+      </div>
+    </div>
+
+    <!-- MODAL: criar/editar projeto ou evento -->
+    <div class="admin-modal-overlay" id="admin-modal-overlay" hidden>
+      <div class="admin-modal" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+        <div class="admin-modal-head">
+          <h3 id="admin-modal-title">Novo projeto</h3>
+          <button type="button" class="admin-modal-close" id="admin-modal-close" aria-label="Fechar">&times;</button>
+        </div>
+        <form class="admin-modal-form" id="admin-modal-form" novalidate>
+          <div id="admin-modal-fields"></div>
+          <p class="field-error" id="admin-modal-error" role="alert"></p>
+          <div class="admin-modal-actions">
+            <button type="button" class="wizard-nav-btn" id="admin-modal-cancel">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="admin-modal-save">Salvar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

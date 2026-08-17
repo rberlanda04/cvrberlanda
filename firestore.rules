@@ -31,15 +31,17 @@ service cloud.firestore {
 
     // Projetos enviados pela página escondida de cadastro
     // (cadastro-projeto.html): qualquer pessoa com o link pode enviar um
-    // projeto novo. Leitura é liberada só pra quem está logado (painel
-    // /admin) OU pra projetos já aprovados (é assim que o currículo público
-    // mostra os projetos aprovados automaticamente, sem precisar editar o
-    // profile.json). Só quem está logado pode mudar o status (aprovar/
-    // reprovar), e só esse campo.
+    // projeto novo (sempre como "pending"). Leitura é liberada só pra quem
+    // está logado (painel /admin) OU pra projetos já aprovados (é assim que
+    // o currículo público mostra os projetos aprovados automaticamente).
+    // Quem está logado tem controle total (criar direto já aprovado, editar
+    // qualquer campo, apagar) — o painel /admin é a fonte de verdade do
+    // portfólio.
     match /projectSubmissions/{submissionId} {
       allow read: if isAdmin() || resource.data.status == 'approved';
-      allow delete: if false;
-      allow create: if request.resource.data.keys().hasOnly(['name', 'logo', 'description', 'ods', 'link', 'status', 'createdAt'])
+      allow delete: if isAdmin();
+      allow create: if isAdmin() || (
+        request.resource.data.keys().hasOnly(['name', 'logo', 'description', 'ods', 'link', 'status', 'createdAt'])
         && request.resource.data.name is string
         && request.resource.data.name.size() > 0
         && request.resource.data.name.size() < 200
@@ -50,14 +52,17 @@ service cloud.firestore {
         && request.resource.data.description.size() < 2000
         && request.resource.data.ods is list
         && request.resource.data.ods.size() > 0
-        && request.resource.data.status == 'pending';
-      allow update: if isAdmin()
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'rating'])
-        && request.resource.data.status in ['pending', 'approved', 'rejected']
-        && (request.resource.data.status != 'approved'
-          || (request.resource.data.rating is int
-            && request.resource.data.rating >= 1
-            && request.resource.data.rating <= 10));
+        && request.resource.data.status == 'pending'
+      );
+      allow update: if isAdmin();
+    }
+
+    // Eventos (palestras, workshops, etc.), geridos só pelo painel /admin —
+    // ninguém envia evento pelo site público, só o dono do currículo cria.
+    // Leitura é pública porque a seção "Eventos" do site mostra isso.
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
     // Bloqueia qualquer outra coleção por padrão.

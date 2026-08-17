@@ -2,16 +2,32 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'r.berlanda04@gmail.com';
+    }
+
     // Logos enviados pela página de cadastro de projeto
     // (cadastro-projeto.html): qualquer pessoa com o link pode enviar uma
     // imagem (até 5MB). Leitura é pública, porque a imagem precisa
-    // aparecer no currículo depois que o projeto é aprovado. Ninguém
-    // sobrescreve ou apaga um arquivo já enviado.
+    // aparecer no currículo depois que o projeto é aprovado. Só quem está
+    // logado (painel /admin) pode apagar (ao excluir um projeto).
     match /projectLogos/{fileName} {
       allow read: if true;
       allow create: if request.resource.size < 5 * 1024 * 1024
         && request.resource.contentType.matches('image/.*');
-      allow update, delete: if false;
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Imagens de eventos: só quem está logado envia (o painel /admin é a
+    // única forma de criar um evento). Leitura é pública.
+    match /eventImages/{fileName} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow update: if false;
+      allow delete: if isAdmin();
     }
 
     // Bloqueia qualquer outro caminho por padrão.

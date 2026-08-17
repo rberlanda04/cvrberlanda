@@ -1416,23 +1416,144 @@ a.chip-acronym:hover { text-decoration: underline; }
 }
 .admin-card-actions .wizard-nav-btn { border: 1px solid var(--surface-border); border-radius: var(--radius-md); }
 .admin-card-actions button:disabled { opacity: 0.5; cursor: default; }
-.admin-rating {
+.admin-delete-btn { color: #dc2626; border-color: color-mix(in srgb, #dc2626 40%, var(--surface-border)) !important; }
+.admin-delete-btn:hover { background: color-mix(in srgb, #dc2626 10%, transparent); }
+
+/* Abas do painel */
+.admin-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--surface-border);
+  background: var(--surface);
+  overflow-x: auto;
+}
+.admin-tab {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.9rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.admin-tab:hover { color: var(--text); }
+.admin-tab[aria-selected="true"] { color: var(--color-primary); border-color: var(--color-primary); }
+
+.admin-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Modal de criar/editar */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 100;
 }
-.admin-rating-input {
-  width: 3.5rem;
-  padding: 0.4rem 0.6rem;
+.admin-modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.admin-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
+.admin-modal-head h3 { margin: 0; font-size: 1.1rem; }
+.admin-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+.admin-modal-close:hover { color: var(--text); }
+.admin-modal-form { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.admin-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.admin-field label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+  font: inherit;
+  padding: 0.6rem 0.8rem;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-sm);
   background: var(--bg);
   color: var(--text);
-  font: inherit;
+  resize: vertical;
 }
-.admin-rating-input.has-error { border-color: #dc2626; }
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus { outline: none; border-color: var(--color-primary); }
+.admin-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.admin-modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.25rem; }
+
+/* Zona de upload dentro do modal (mesmo padrão do cadastro-projeto.html) */
+.admin-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 110px;
+  border: 2px dashed var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  text-align: center;
+  background: var(--bg-alt);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.admin-dropzone:hover,
+.admin-dropzone:focus-visible { border-color: var(--color-primary); background: var(--surface); }
+.admin-dropzone.is-dragover { border-color: var(--color-primary); background: var(--surface); }
+.admin-dropzone-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+.admin-dropzone-empty strong { color: var(--color-primary); font-weight: 600; }
+.admin-dropzone-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  .admin-field-row { grid-template-columns: 1fr; }
+}
 
