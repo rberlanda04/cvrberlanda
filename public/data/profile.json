@@ -359,10 +359,10 @@
       {
         "era": "Atual",
         "title": "Beerlanda",
-        "org": "beerlanda.web.app",
+        "org": "beerlanda.com.br",
         "type": "Projeto pessoal",
         "description": "Marca de sabonetes, bálsamos e velas artesanais naturais — catálogo de produtos de cuidado pessoal e ambientação feitos à mão.",
-        "url": "https://beerlanda.web.app/",
+        "url": "https://beerlanda.com.br",
         "logo": "assets/logos/beerlanda.png"
       },
       {
@@ -386,10 +386,10 @@
       {
         "era": "Atual",
         "title": "Izicode Edu",
-        "org": "izicodeedu-532ac.web.app",
+        "org": "izicode.com.br",
         "type": "Produto atual",
         "description": "Robótica e inovação para escolas: cultura maker, STEAM e robótica integradas à BNCC, laboratórios maker e formação docente.",
-        "url": "https://izicodeedu-532ac.web.app/",
+        "url": "https://izicode.com.br",
         "logo": "assets/logos/izicode.png"
       },
       {

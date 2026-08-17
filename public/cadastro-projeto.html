@@ -41,12 +41,14 @@
               <label for="pf-logo">Logo do projeto</label>
               <div class="pf-dropzone" id="pf-dropzone" tabindex="0" role="button" aria-describedby="pf-error-logo">
                 <img class="pf-upload-preview" id="pf-logo-preview" alt="" hidden />
+                <p class="pf-dropzone-filename" id="pf-dropzone-filename" hidden></p>
                 <div class="pf-dropzone-empty" id="pf-dropzone-empty">
                   <svg class="pf-dropzone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M12 4 7 9M12 4l5 5" /><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></svg>
                   <span>Arraste uma imagem aqui ou <strong>clique para escolher</strong></span>
                 </div>
                 <input type="file" id="pf-logo" name="pfLogo" accept="image/*" class="pf-dropzone-input" tabindex="-1" />
               </div>
+              <button type="button" class="pf-dropzone-clear" id="pf-dropzone-clear" hidden>Remover imagem</button>
               <p class="field-error" id="pf-error-logo" role="alert"></p>
               <p class="pf-note">JPG, PNG ou WebP, até 5MB.</p>
             </div>
@@ -55,6 +57,7 @@
               <span class="wizard-step-count">3 de 5</span>
               <label for="pf-description">Descrição</label>
               <textarea id="pf-description" name="pfDescription" rows="4" placeholder="Conte em poucas linhas o que o projeto faz"></textarea>
+              <p class="pf-char-count" id="pf-description-count">0 caracteres (mín. 10)</p>
               <p class="field-error" id="pf-error-description" role="alert"></p>
             </div>
 

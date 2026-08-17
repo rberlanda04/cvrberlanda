@@ -13,6 +13,7 @@ import {
   serverTimestamp,
   query,
   where,
+  orderBy,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
@@ -662,6 +663,45 @@ async function loadApprovedMentoredProjects(grid) {
   }
 }
 
+// Eventos geridos direto pelo painel /admin (coleção "events" no
+// Firestore). A seção fica escondida se não houver nenhum cadastrado.
+async function loadEvents() {
+  const section = document.getElementById("eventos");
+  const grid = document.getElementById("events-grid");
+  try {
+    const snapshot = await getDocs(query(collection(db, "events"), orderBy("date", "desc")));
+    if (snapshot.empty) return;
+    snapshot.forEach((docSnap) => grid.appendChild(buildEventCard(docSnap.data())));
+    section.hidden = false;
+  } catch (err) {
+    console.error("Falha ao carregar eventos", err);
+  }
+}
+
+function formatEventDate(dateStr) {
+  if (!dateStr) return "";
+  const parsed = new Date(`${dateStr}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return dateStr;
+  return parsed.toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+}
+
+function buildEventCard(eventData) {
+  const card = el("article", "card card-with-logo");
+  card.appendChild(createLogoBadge({ logo: eventData.image, label: eventData.title, size: 48 }));
+  const body = el("div");
+  const titleHtml = eventData.link
+    ? `<a class="card-title card-title-link" href="${eventData.link}" target="_blank" rel="noopener noreferrer">${eventData.title}</a>`
+    : `<h3 class="card-title">${eventData.title}</h3>`;
+  body.innerHTML = `
+    <p class="card-period">${formatEventDate(eventData.date)}</p>
+    ${titleHtml}
+    <p class="card-org">${eventData.location || ""}</p>
+    <p class="card-desc">${eventData.description || ""}</p>
+  `;
+  card.appendChild(body);
+  return card;
+}
+
 // Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em português.
 function renderContact(data) {
   setText("contact-heading", data.contact.heading);
@@ -752,6 +792,7 @@ async function init() {
     setText("hero-name", "Erro ao carregar dados");
     setText("hero-tagline", "Verifique se o arquivo data/profile.json existe e o site está sendo servido por um servidor HTTP (não aberto direto como arquivo local).");
   }
+  loadEvents();
 }
 
 function setupThemeToggle() {

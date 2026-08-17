@@ -913,7 +913,7 @@ a.tech-tile { text-decoration: none; color: inherit; cursor: pointer; }
 .pf-dropzone:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 .pf-dropzone.is-dragover { border-color: var(--color-primary); background: var(--surface); }
 .pf-dropzone.has-error { border-color: #dc2626; }
-.pf-dropzone-empty {
+.pf-dropzone-empty:not([hidden]) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -951,6 +951,33 @@ a.tech-tile { text-decoration: none; color: inherit; cursor: pointer; }
   border: 1px solid var(--surface-border);
   background: var(--surface);
   pointer-events: none;
+}
+.pf-char-count {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+  transition: color 0.2s ease;
+}
+.pf-char-count.is-ok { color: #16a34a; }
+.pf-dropzone-filename {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  word-break: break-all;
+}
+.pf-dropzone-clear {
+  align-self: center;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #dc2626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  text-decoration: underline;
 }
 .project-form .btn { align-self: stretch; text-align: center; }
 
@@ -1453,7 +1480,7 @@ a.chip-acronym:hover { text-decoration: underline; }
 }
 
 /* Modal de criar/editar */
-.admin-modal-overlay {
+.admin-modal-overlay:not([hidden]) {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -1533,7 +1560,7 @@ a.chip-acronym:hover { text-decoration: underline; }
 .admin-dropzone:hover,
 .admin-dropzone:focus-visible { border-color: var(--color-primary); background: var(--surface); }
 .admin-dropzone.is-dragover { border-color: var(--color-primary); background: var(--surface); }
-.admin-dropzone-empty {
+.admin-dropzone-empty:not([hidden]) {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -212,20 +212,29 @@ function init() {
   // levam ao mesmo <input type="file"> escondido dentro da div.
   const dropzone = document.getElementById("pf-dropzone");
   const dropzoneEmpty = document.getElementById("pf-dropzone-empty");
+  const dropzoneFilename = document.getElementById("pf-dropzone-filename");
+  const dropzoneClear = document.getElementById("pf-dropzone-clear");
   const logoInput = fields[1].input;
   const logoPreview = document.getElementById("pf-logo-preview");
+
+  const formatFileSize = (bytes) => `${(bytes / (1024 * 1024)).toFixed(1)}MB`;
 
   const updateLogoPreview = () => {
     const file = logoInput.files[0];
     if (!file) {
       logoPreview.hidden = true;
       logoPreview.removeAttribute("src");
+      dropzoneFilename.hidden = true;
       dropzoneEmpty.hidden = false;
+      dropzoneClear.hidden = true;
       return;
     }
     logoPreview.src = URL.createObjectURL(file);
     logoPreview.hidden = false;
+    dropzoneFilename.textContent = `${file.name} · ${formatFileSize(file.size)}`;
+    dropzoneFilename.hidden = false;
     dropzoneEmpty.hidden = true;
+    dropzoneClear.hidden = false;
     // O preview muda a altura do passo — recalcula a altura do viewport
     // (que corta o conteúdo com overflow: hidden) pra não cortar a imagem.
     updateUI();
@@ -234,6 +243,12 @@ function init() {
   logoInput.addEventListener("change", () => {
     updateLogoPreview();
     showError(fields[1], false);
+  });
+
+  dropzoneClear.addEventListener("click", (event) => {
+    event.stopPropagation();
+    logoInput.value = "";
+    updateLogoPreview();
   });
 
   dropzone.addEventListener("click", () => logoInput.click());
@@ -317,6 +332,13 @@ function init() {
         nextBtn.click();
       }
     });
+  });
+
+  const descriptionCount = document.getElementById("pf-description-count");
+  fields[2].input.addEventListener("input", () => {
+    const len = fields[2].input.value.trim().length;
+    descriptionCount.textContent = `${len} ${len === 1 ? "caractere" : "caracteres"} (mín. 10)`;
+    descriptionCount.classList.toggle("is-ok", len >= 10);
   });
 
   window.addEventListener("resize", () => updateUI());
