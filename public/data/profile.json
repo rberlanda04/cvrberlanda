@@ -434,12 +434,12 @@
     "items": [
       {
         "era": "Atual",
-        "title": "Izicode Maker RPG",
+        "title": "Izicode RPG Maker",
         "org": "izicodeedurpg.vercel.app",
         "type": "Produto atual",
         "description": "Plataforma educacional STEAM gamificada, com mecânicas de RPG (progressão, missões e recompensas) para engajar estudantes em ciência, tecnologia, engenharia, artes e matemática.",
         "url": "https://izicodeedurpg.vercel.app",
-        "logo": "assets/logos/izicode.png"
+        "logo": "assets/logos/rpgmaker.jpeg"
       },
       {
         "era": "Atual",
@@ -581,7 +581,10 @@
   "impactStats": {
     "heading": "Impacto em números",
     "intro": "O alcance da robótica e da cultura maker em sala de aula, ano a ano.",
-    "featuredLabels": ["Alunos", "Projetos"],
+    "featuredLabels": [
+      "Alunos",
+      "Projetos"
+    ],
     "statsLabel": "Números por ano",
     "statsByYear": [
       {

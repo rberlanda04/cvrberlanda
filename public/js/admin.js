@@ -342,15 +342,17 @@ async function loadProjects() {
   try {
     snapshot = await getDocs(query(collection(db, "projectSubmissions"), orderBy("createdAt", "desc")));
   } catch (err) {
+    empty.hidden = false;
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
   document.getElementById("stat-projects").textContent = snapshot.size;
   if (snapshot.empty) {
+    empty.hidden = false;
     empty.textContent = "Nenhum projeto ainda — clique em \"+ Novo projeto\" pra adicionar o primeiro.";
     return;
   }
-  empty.remove();
+  empty.hidden = true;
 
   snapshot.forEach((docSnap) => {
     const data = docSnap.data();
@@ -485,15 +487,17 @@ async function loadEvents() {
   try {
     snapshot = await getDocs(query(collection(db, "events"), orderBy("date", "desc")));
   } catch (err) {
+    empty.hidden = false;
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
   document.getElementById("stat-events").textContent = snapshot.size;
   if (snapshot.empty) {
+    empty.hidden = false;
     empty.textContent = "Nenhum evento ainda — clique em \"+ Novo evento\" pra adicionar o primeiro.";
     return;
   }
-  empty.remove();
+  empty.hidden = true;
 
   snapshot.forEach((docSnap) => {
     const data = docSnap.data();
@@ -539,15 +543,17 @@ async function loadMessages() {
   try {
     snapshot = await getDocs(query(collection(db, "contactMessages"), orderBy("createdAt", "desc")));
   } catch (err) {
+    empty.hidden = false;
     empty.textContent = "Erro ao carregar (as regras do Firestore ainda não foram publicadas no Console).";
     return;
   }
   document.getElementById("stat-messages").textContent = snapshot.size;
   if (snapshot.empty) {
+    empty.hidden = false;
     empty.textContent = "Nenhuma mensagem ainda.";
     return;
   }
-  empty.remove();
+  empty.hidden = true;
 
   snapshot.forEach((docSnap) => {
     const data = docSnap.data();
