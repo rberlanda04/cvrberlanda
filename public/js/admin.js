@@ -581,14 +581,27 @@ async function loadVisitCount() {
 /* ---------------------------------------------------------
    Login
    --------------------------------------------------------- */
+// A visão geral (acessos, projetos, eventos, mensagens) só é buscada uma
+// vez, ao abrir o painel — não atualiza sozinha em tempo real. O botão
+// "Atualizar" busca tudo de novo sem precisar recarregar a página inteira.
+function refreshOverview() {
+  return Promise.all([loadVisitCount(), loadProjects(), loadEvents(), loadMessages()]);
+}
+
 function showDashboard() {
   document.getElementById("admin-login-wrap").hidden = true;
   document.getElementById("admin-dashboard").hidden = false;
-  loadVisitCount();
-  loadProjects();
-  loadEvents();
-  loadMessages();
+  refreshOverview();
 }
+
+document.getElementById("refresh-overview-btn").addEventListener("click", async () => {
+  const btn = document.getElementById("refresh-overview-btn");
+  btn.disabled = true;
+  btn.textContent = "Atualizando...";
+  await refreshOverview();
+  btn.disabled = false;
+  btn.textContent = "↻ Atualizar";
+});
 
 function showLogin() {
   document.getElementById("admin-login-wrap").hidden = false;

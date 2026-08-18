@@ -33,22 +33,28 @@
         <button class="wizard-nav-btn" id="admin-logout">Sair</button>
       </header>
 
-      <div class="container admin-overview" id="admin-overview">
-        <div class="stat-tile">
-          <span class="stat-count" id="stat-visits">—</span>
-          <span class="stat-label">Acessos ao currículo</span>
+      <div class="container admin-overview-wrap">
+        <div class="admin-overview-head">
+          <span class="admin-overview-title">Visão geral</span>
+          <button type="button" class="wizard-nav-btn" id="refresh-overview-btn">↻ Atualizar</button>
         </div>
-        <div class="stat-tile">
-          <span class="stat-count" id="stat-projects">—</span>
-          <span class="stat-label">Projetos cadastrados</span>
-        </div>
-        <div class="stat-tile">
-          <span class="stat-count" id="stat-events">—</span>
-          <span class="stat-label">Eventos publicados</span>
-        </div>
-        <div class="stat-tile">
-          <span class="stat-count" id="stat-messages">—</span>
-          <span class="stat-label">Mensagens recebidas</span>
+        <div class="admin-overview" id="admin-overview">
+          <div class="stat-tile">
+            <span class="stat-count" id="stat-visits">—</span>
+            <span class="stat-label">Acessos ao currículo</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-count" id="stat-projects">—</span>
+            <span class="stat-label">Projetos cadastrados</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-count" id="stat-events">—</span>
+            <span class="stat-label">Eventos publicados</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-count" id="stat-messages">—</span>
+            <span class="stat-label">Mensagens recebidas</span>
+          </div>
         </div>
       </div>
 

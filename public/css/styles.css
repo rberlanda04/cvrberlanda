@@ -1390,11 +1390,19 @@ a.chip-acronym:hover { text-decoration: underline; }
   z-index: 10;
 }
 .admin-header-title { font-weight: 700; }
+.admin-overview-wrap { padding-block: 2rem 0.5rem; }
+.admin-overview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.admin-overview-title { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .admin-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
-  padding-block: 2rem 0.5rem;
 }
 .admin-overview .stat-tile {
   padding: 1.25rem;
