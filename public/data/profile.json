@@ -48,13 +48,13 @@
     "heading": "Onde estou trabalhando",
     "items": [
       {
-        "title": "Professor Mentor de projetos",
+        "title": "Professor Mentor de Projetos",
         "org": "Colégio Marista Anjo da Guarda",
         "logo": "assets/logos/colegiomaristaanjodaguarda.png",
         "fallbackLogo": "assets/logos/maristabr.avif"
       },
       {
-        "title": "Professor Laboratório de ideas",
+        "title": "Professor Laboratório de Idéias",
         "org": "Escola Social Marista Ecológica",
         "logo": "assets/logos/maristaescolassociais.jpg",
         "fallbackLogo": "assets/logos/maristabr.avif"
@@ -70,24 +70,109 @@
     "heading": "Olimpíadas, competições e eventos",
     "intro": "Projetos de estudantes mentorados em olimpíadas científicas, hackathons e eventos maker ao longo dos últimos anos.",
     "catalog": {
-      "OBT": { "description": "Olimpíada Brasileira de Tecnologia", "logo": "assets/logos/obt.png" },
-      "OBES": { "description": "Olimpíada Brasileira de Empreendedorismo Social", "logo": "assets/logos/obes.jpg" },
-      "OBA": { "description": "Olimpíada Brasileira de Astronomia e Astronáutica", "logo": "assets/logos/oba.png" },
-      "OBAFOG": { "description": "Olimpíada Brasileira de Foguetes", "logo": "assets/logos/obafog-badge.jpg" },
-      "OBR": { "description": "Olimpíada Brasileira de Robótica", "logo": "assets/logos/obr.png" },
-      "FMR": { "description": "Festival Marista de Robótica", "logo": "assets/logos/fmr.jpg" },
-      "FCPUCPR": { "description": "Festival de Ciências PUCPR", "logo": "assets/logos/fcpucpr.png" },
-      "PROGRAMAR": { "description": "Hackathon Programar", "logo": "assets/logos/programar.jpg" },
-      "Eventos Maker": { "description": "Feiras e mostras de cultura maker.", "logo": "assets/logos/maker.png" },
-      "Conecta Startup SEBRAE": { "description": "", "logo": "assets/logos/sebrasestartups.png" },
-      "CPBR15": { "description": "Campus Party Brasil 15", "logo": "assets/logos/cpbr15.png" }
+      "OBT": {
+        "description": "Olimpíada Brasileira de Tecnologia",
+        "logo": "assets/logos/obt.png"
+      },
+      "OBES": {
+        "description": "Olimpíada Brasileira de Empreendedorismo Social",
+        "logo": "assets/logos/obes.jpg"
+      },
+      "OBA": {
+        "description": "Olimpíada Brasileira de Astronomia e Astronáutica",
+        "logo": "assets/logos/oba.png"
+      },
+      "OBAFOG": {
+        "description": "Olimpíada Brasileira de Foguetes",
+        "logo": "assets/logos/obafog-badge.jpg"
+      },
+      "OBR": {
+        "description": "Olimpíada Brasileira de Robótica",
+        "logo": "assets/logos/obr.png"
+      },
+      "FMR": {
+        "description": "Festival Marista de Robótica",
+        "logo": "assets/logos/fmr.jpg"
+      },
+      "FCPUCPR": {
+        "description": "Festival de Ciências PUCPR",
+        "logo": "assets/logos/fcpucpr.png"
+      },
+      "PROGRAMAR": {
+        "description": "Hackathon Programar",
+        "logo": "assets/logos/programar.jpg"
+      },
+      "Eventos Maker": {
+        "description": "Feiras e mostras de cultura maker.",
+        "logo": "assets/logos/maker.png"
+      },
+      "Conecta Startup SEBRAE": {
+        "description": "",
+        "logo": "assets/logos/sebrasestartups.png"
+      },
+      "CPBR15": {
+        "description": "Campus Party Brasil 15",
+        "logo": "assets/logos/cpbr15.png"
+      }
     },
     "byYear": [
-      { "year": "2026", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR", "Eventos Maker"] },
-      { "year": "2025", "items": ["OBT", "OBES", "OBA", "OBAFOG", "FMR", "FCPUCPR", "PROGRAMAR"] },
-      { "year": "2024", "items": ["OBT", "OBES", "OBA", "OBAFOG", "OBR", "FCPUCPR", "PROGRAMAR"] },
-      { "year": "2023", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "CPBR15"] },
-      { "year": "2022", "items": ["OBA", "OBAFOG", "PROGRAMAR", "Eventos Maker", "Conecta Startup SEBRAE"] }
+      {
+        "year": "2026",
+        "items": [
+          "OBT",
+          "OBES",
+          "OBA",
+          "OBAFOG",
+          "FMR",
+          "FCPUCPR",
+          "PROGRAMAR",
+          "Eventos Maker"
+        ]
+      },
+      {
+        "year": "2025",
+        "items": [
+          "OBT",
+          "OBES",
+          "OBA",
+          "OBAFOG",
+          "FMR",
+          "FCPUCPR",
+          "PROGRAMAR"
+        ]
+      },
+      {
+        "year": "2024",
+        "items": [
+          "OBT",
+          "OBES",
+          "OBA",
+          "OBAFOG",
+          "OBR",
+          "FCPUCPR",
+          "PROGRAMAR"
+        ]
+      },
+      {
+        "year": "2023",
+        "items": [
+          "OBA",
+          "OBAFOG",
+          "PROGRAMAR",
+          "Eventos Maker",
+          "CPBR15"
+        ]
+      },
+      {
+        "year": "2022",
+        "items": [
+          "OBA",
+          "OBAFOG",
+          "PROGRAMAR",
+          "Eventos Maker",
+          "Conecta Startup SEBRAE"
+        ]
+      }
     ],
     "footnote": ""
   },
@@ -161,7 +246,7 @@
   },
   "techStack": {
     "heading": "Tecnologias & Ferramentas",
-    "intro": "As ferramentas por trás dos projetos de sala de aula e dos produtos em desenvolvimento.",
+    "intro": "As ferramentas por trás dos projetos de sala de aula e dos projetos em desenvolvimento.",
     "groups": [
       {
         "title": "Hardware",
@@ -295,7 +380,7 @@
         ]
       },
       {
-        "title": "IA",
+        "title": "INTELIGÊNCIA ARTIFICIAL",
         "items": [
           {
             "label": "Claude",
@@ -367,8 +452,8 @@
       },
       {
         "era": "Atual",
-        "title": "WiW Speak (Learnfreehands)",
-        "org": "GitHub · rberlanda04/Learnfreehands",
+        "title": "WiW Speak",
+        "org": "freehands.com.br",
         "type": "Projeto open source",
         "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade.",
         "url": "https://learnfreehands.vercel.app",
@@ -394,8 +479,8 @@
       },
       {
         "era": "Robótica na Rede Marista",
-        "title": "Currículo atualizado",
-        "org": "Gamma",
+        "title": "Currículo 2022",
+        "org": "Rogerio H. Berlanda",
         "type": "Currículo",
         "description": "Currículo atual: professor de robótica na Rede Marista Brasil, com trajetória em tecnologia e inovação.",
         "url": "https://gamma.app/docs/Rogerio-H-Berlanda-iziqo24keh3fi98",
@@ -493,60 +578,125 @@
       }
     ]
   },
-  "mentoredProjects": {
-    "heading": "Projetos mentorados",
-    "intro": "Projetos de estudantes mentorados em sala de aula.",
+  "impactStats": {
+    "heading": "Impacto em números",
+    "intro": "O alcance da robótica e da cultura maker em sala de aula, ano a ano.",
+    "featuredLabels": ["Alunos", "Projetos"],
     "statsLabel": "Números por ano",
     "statsByYear": [
       {
         "year": "2026",
         "stats": [
-          { "count": "26", "label": "Turmas" },
-          { "count": "540", "label": "Alunos" },
-          { "count": "52", "label": "Equipes" },
-          { "count": "38", "label": "Projetos" }
+          {
+            "count": "26",
+            "label": "Turmas"
+          },
+          {
+            "count": "540",
+            "label": "Alunos"
+          },
+          {
+            "count": "52",
+            "label": "Equipes"
+          },
+          {
+            "count": "38",
+            "label": "Projetos"
+          }
         ]
       },
       {
         "year": "2025",
         "stats": [
-          { "count": "20", "label": "Turmas" },
-          { "count": "474", "label": "Alunos" },
-          { "count": "47", "label": "Equipes" },
-          { "count": "30", "label": "Projetos" }
+          {
+            "count": "20",
+            "label": "Turmas"
+          },
+          {
+            "count": "474",
+            "label": "Alunos"
+          },
+          {
+            "count": "47",
+            "label": "Equipes"
+          },
+          {
+            "count": "30",
+            "label": "Projetos"
+          }
         ]
       },
       {
         "year": "2024",
         "stats": [
-          { "count": "27", "label": "Turmas" },
-          { "count": "556", "label": "Alunos" },
-          { "count": "38", "label": "Equipes" },
-          { "count": "32", "label": "Projetos" }
+          {
+            "count": "27",
+            "label": "Turmas"
+          },
+          {
+            "count": "556",
+            "label": "Alunos"
+          },
+          {
+            "count": "38",
+            "label": "Equipes"
+          },
+          {
+            "count": "32",
+            "label": "Projetos"
+          }
         ]
       },
       {
         "year": "2023",
         "stats": [
-          { "count": "38", "label": "Turmas" },
-          { "count": "689", "label": "Alunos" },
-          { "count": "19", "label": "Equipes" },
-          { "count": "45", "label": "Projetos" }
+          {
+            "count": "38",
+            "label": "Turmas"
+          },
+          {
+            "count": "689",
+            "label": "Alunos"
+          },
+          {
+            "count": "19",
+            "label": "Equipes"
+          },
+          {
+            "count": "45",
+            "label": "Projetos"
+          }
         ]
       },
       {
         "year": "2022",
         "stats": [
-          { "count": "14", "label": "Turmas" },
-          { "count": "323", "label": "Alunos" },
-          { "count": "14", "label": "Equipes" },
-          { "count": "13", "label": "Projetos" }
+          {
+            "count": "14",
+            "label": "Turmas"
+          },
+          {
+            "count": "323",
+            "label": "Alunos"
+          },
+          {
+            "count": "14",
+            "label": "Equipes"
+          },
+          {
+            "count": "13",
+            "label": "Projetos"
+          }
         ]
       }
-    ],
+    ]
+  },
+  "mentoredProjects": {
+    "heading": "Projetos mentorados",
+    "intro": "Trabalhos que saíram do papel: projetos desenvolvidos pelos próprios estudantes, do primeiro protótipo à apresentação final.",
     "items": [
       {
-        "title": "WiW Speak — Learnfreehands",
+        "title": "WiW Speak ",
         "event": "Projeto próprio de acessibilidade",
         "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade (HealthTech/EdTech).",
         "logo": "assets/logos/wiwspeak.png",

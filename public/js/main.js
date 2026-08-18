@@ -558,13 +558,34 @@ function renderCompetitions(data) {
   if (byYear.length) renderYear(byYear[0]);
 }
 
-function renderMentored(data) {
-  setText("mentored-heading", data.mentoredProjects.heading);
-  setText("mentored-intro", data.mentoredProjects.intro);
+function renderImpactStats(data) {
+  const impact = data.impactStats;
+  setText("impact-heading", impact.heading);
+  setText("impact-intro", impact.intro);
+  setText("impact-stats-label", impact.statsLabel);
 
-  setText("mentored-stats-label", data.mentoredProjects.statsLabel);
+  const yearsData = impact.statsByYear || [];
 
-  const statsGrid = document.getElementById("mentored-stats");
+  const featuredGrid = document.getElementById("impact-featured");
+  featuredGrid.innerHTML = "";
+  (impact.featuredLabels || []).forEach((label) => {
+    const total = yearsData.reduce((sum, yearEntry) => {
+      const stat = yearEntry.stats.find((s) => s.label === label);
+      return sum + (stat ? parseStatCount(stat.count).target : 0);
+    }, 0);
+    const tile = el(
+      "div",
+      "stat-tile is-featured",
+      `
+      <span class="stat-count" data-target="${total}" data-suffix="">0</span>
+      <span class="stat-label">${label}</span>
+    `
+    );
+    featuredGrid.appendChild(tile);
+  });
+  setupStatsCounter(featuredGrid);
+
+  const statsGrid = document.getElementById("impact-stats");
   const renderYearStats = (yearEntry) => {
     statsGrid.innerHTML = "";
     yearEntry.stats.forEach((stat) => {
@@ -582,8 +603,7 @@ function renderMentored(data) {
     setupStatsCounter(statsGrid);
   };
 
-  const yearsData = data.mentoredProjects.statsByYear || [];
-  const yearsWrap = document.getElementById("mentored-stats-years");
+  const yearsWrap = document.getElementById("impact-stats-years");
   yearsWrap.innerHTML = "";
   yearsData.forEach((yearEntry, index) => {
     const btn = el("button", "stats-year-tab", yearEntry.year);
@@ -599,6 +619,11 @@ function renderMentored(data) {
     yearsWrap.appendChild(btn);
   });
   if (yearsData.length) renderYearStats(yearsData[0]);
+}
+
+function renderMentored(data) {
+  setText("mentored-heading", data.mentoredProjects.heading);
+  setText("mentored-intro", data.mentoredProjects.intro);
 
   const grid = document.getElementById("mentored-grid");
   grid.innerHTML = "";
@@ -788,6 +813,7 @@ async function init() {
     renderPartners(data);
     renderTimeline(data);
     renderCompetitions(data);
+    renderImpactStats(data);
     renderMentored(data);
     renderContact(data);
   } catch (err) {

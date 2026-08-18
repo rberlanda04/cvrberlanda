@@ -531,6 +531,22 @@ button:focus-visible {
   letter-spacing: 0.04em;
 }
 
+/* Totais somados de todos os anos, em destaque acima dos números por ano */
+.impact-featured {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  max-width: 560px;
+  margin: 1.75rem 0 2.5rem;
+}
+.stat-tile.is-featured {
+  padding: 1.75rem 1.25rem;
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--surface-border));
+  border-radius: var(--radius-lg);
+}
+.stat-tile.is-featured .stat-count { font-size: clamp(2.8rem, 6vw, 3.8rem); }
+
 /* =========================================================
    Tecnologias — portal visual de logos
    ========================================================= */
