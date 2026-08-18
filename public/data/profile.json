@@ -113,6 +113,10 @@
       "CPBR15": {
         "description": "Campus Party Brasil 15",
         "logo": "assets/logos/cpbr15.png"
+      },
+      "HACKATEENS": {
+        "description": "Hackathon voltado para adolescentes, com desafios de tecnologia e inovação.",
+        "logo": "assets/logos/hackateens.jpeg"
       }
     },
     "byYear": [
@@ -126,7 +130,8 @@
           "FMR",
           "FCPUCPR",
           "PROGRAMAR",
-          "Eventos Maker"
+          "Eventos Maker",
+          "HACKATEENS"
         ]
       },
       {
