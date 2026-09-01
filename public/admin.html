@@ -19,6 +19,7 @@
     <!-- LOGIN -->
     <div class="admin-login-wrap" id="admin-login-wrap">
       <div class="admin-login-card">
+        <img class="admin-login-logo" src="assets/logos/logo.png" alt="" />
         <h1 class="section-title" style="text-align: center;">Painel</h1>
         <p class="section-intro" style="text-align: center; margin-inline: auto;">Login restrito.</p>
         <p class="field-error" id="admin-login-error" role="alert"></p>
@@ -29,7 +30,13 @@
     <!-- PAINEL -->
     <div class="admin-dashboard" id="admin-dashboard" hidden>
       <header class="admin-header">
-        <span class="admin-header-title">Painel</span>
+        <div class="admin-header-brand">
+          <img class="admin-header-logo" src="assets/logos/logo.png" alt="" />
+          <div>
+            <span class="admin-header-title">Painel</span>
+            <span class="admin-header-subtitle">Rogerio H. Berlanda</span>
+          </div>
+        </div>
         <button class="wizard-nav-btn" id="admin-logout">Sair</button>
       </header>
 
@@ -40,18 +47,30 @@
         </div>
         <div class="admin-overview" id="admin-overview">
           <div class="stat-tile">
+            <span class="stat-icon stat-icon-visits" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" /></svg>
+            </span>
             <span class="stat-count" id="stat-visits">—</span>
             <span class="stat-label">Acessos ao currículo</span>
           </div>
           <div class="stat-tile">
+            <span class="stat-icon stat-icon-projects" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" /></svg>
+            </span>
             <span class="stat-count" id="stat-projects">—</span>
             <span class="stat-label">Projetos cadastrados</span>
           </div>
           <div class="stat-tile">
+            <span class="stat-icon stat-icon-events" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>
+            </span>
             <span class="stat-count" id="stat-events">—</span>
             <span class="stat-label">Eventos publicados</span>
           </div>
           <div class="stat-tile">
+            <span class="stat-icon stat-icon-messages" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+            </span>
             <span class="stat-count" id="stat-messages">—</span>
             <span class="stat-label">Mensagens recebidas</span>
           </div>
@@ -59,9 +78,18 @@
       </div>
 
       <nav class="admin-tabs" id="admin-tabs">
-        <button type="button" class="admin-tab" data-tab="projects" aria-selected="true">Portfólio</button>
-        <button type="button" class="admin-tab" data-tab="events" aria-selected="false">Eventos</button>
-        <button type="button" class="admin-tab" data-tab="messages" aria-selected="false">Mensagens</button>
+        <button type="button" class="admin-tab" data-tab="projects" aria-selected="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" /></svg>
+          Portfólio
+        </button>
+        <button type="button" class="admin-tab" data-tab="events" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>
+          Eventos
+        </button>
+        <button type="button" class="admin-tab" data-tab="messages" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+          Mensagens
+        </button>
       </nav>
 
       <div class="container admin-container">

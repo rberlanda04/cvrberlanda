@@ -1383,20 +1383,35 @@ a.chip-acronym:hover { text-decoration: underline; }
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.25rem;
+}
+.admin-login-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 .admin-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   border-bottom: 1px solid var(--surface-border);
   background: var(--surface);
   position: sticky;
   top: 0;
   z-index: 10;
 }
+.admin-header-brand { display: flex; align-items: center; gap: 0.75rem; }
+.admin-header-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+.admin-header-brand > div { display: flex; flex-direction: column; line-height: 1.25; }
 .admin-header-title { font-weight: 700; }
+.admin-header-subtitle { font-size: 0.78rem; color: var(--text-muted); }
 .admin-overview-wrap { padding-block: 2rem 0.5rem; }
 .admin-overview-head {
   display: flex;
@@ -1408,15 +1423,44 @@ a.chip-acronym:hover { text-decoration: underline; }
 .admin-overview-title { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .admin-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 1rem;
 }
 .admin-overview .stat-tile {
-  padding: 1.25rem;
+  padding: 1.5rem 1.25rem;
   background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
+.admin-overview .stat-tile:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+.stat-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+}
+.stat-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.stat-icon-visits { background: color-mix(in srgb, #0ea5e9 15%, transparent); }
+.stat-icon-visits svg { stroke: #0ea5e9; }
+.stat-icon-projects { background: color-mix(in srgb, var(--color-primary) 15%, transparent); }
+.stat-icon-projects svg { stroke: var(--color-primary); }
+.stat-icon-events { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+.stat-icon-events svg { stroke: var(--color-accent); }
+.stat-icon-messages { background: color-mix(in srgb, #a855f7 15%, transparent); }
+.stat-icon-messages svg { stroke: #a855f7; }
 .admin-container {
   padding-block: 2.5rem;
   display: flex;
@@ -1424,10 +1468,11 @@ a.chip-acronym:hover { text-decoration: underline; }
   gap: 3rem;
 }
 .admin-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1rem;
   margin-top: 1.25rem;
+  align-items: start;
 }
 .admin-card {
   background: var(--surface);
@@ -1435,6 +1480,12 @@ a.chip-acronym:hover { text-decoration: underline; }
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.admin-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--surface-border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 .admin-card-head {
   display: flex;
@@ -1499,6 +1550,9 @@ a.chip-acronym:hover { text-decoration: underline; }
   overflow-x: auto;
 }
 .admin-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font: inherit;
   font-weight: 600;
   font-size: 0.9rem;
@@ -1510,6 +1564,15 @@ a.chip-acronym:hover { text-decoration: underline; }
   cursor: pointer;
   white-space: nowrap;
   transition: color 0.2s ease, border-color 0.2s ease;
+}
+.admin-tab svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .admin-tab:hover { color: var(--text); }
 .admin-tab[aria-selected="true"] { color: var(--color-primary); border-color: var(--color-primary); }
