@@ -31,8 +31,9 @@ const storage = getStorage(firebaseApp);
 const MAX_LOGO_BYTES = 5 * 1024 * 1024;
 
 // Os 17 Objetivos de Desenvolvimento Sustentável (ONU), nome oficial em
-// português. Os ícones (assets/logos/ods/ods-N.png) são os oficiais da ONU,
-// via Wikimedia Commons.
+// português, mais o ODS 18 — Igualdade Étnico-Racial, iniciativa brasileira
+// (governo federal + PNUD, 2024). Os ícones (assets/logos/ods/ods-N.png) são
+// os oficiais, o 18 no mesmo padrão visual dos outros 17.
 const ODS_LIST = [
   { n: 1, name: "Erradicação da Pobreza" },
   { n: 2, name: "Fome Zero e Agricultura Sustentável" },
@@ -51,6 +52,7 @@ const ODS_LIST = [
   { n: 15, name: "Vida Terrestre" },
   { n: 16, name: "Paz, Justiça e Instituições Eficazes" },
   { n: 17, name: "Parcerias e Meios de Implementação" },
+  { n: 18, name: "Igualdade Étnico-Racial" },
 ];
 
 function el(tag, className, html) {

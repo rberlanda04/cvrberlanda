@@ -64,6 +64,7 @@ const ODS_LIST = [
   { n: 15, name: "Vida Terrestre" },
   { n: 16, name: "Paz, Justiça e Instituições Eficazes" },
   { n: 17, name: "Parcerias e Meios de Implementação" },
+  { n: 18, name: "Igualdade Étnico-Racial" },
 ];
 
 function el(tag, className, html) {
