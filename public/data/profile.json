@@ -439,6 +439,24 @@
     "items": [
       {
         "era": "Atual",
+        "title": "Q3 Orça",
+        "org": "q3orca.web.app",
+        "type": "Produto atual",
+        "description": "Orçamentos profissionais em 2 minutos para prestadores de serviço: monte pelo celular, envie pelo WhatsApp e receba por Pix. Plano grátis e plano Pro com a marca do profissional.",
+        "url": "https://q3orca.web.app",
+        "logo": "assets/logos/q3orca.png"
+      },
+      {
+        "era": "Atual",
+        "title": "IdeaLab Games",
+        "org": "idealabgames.web.app",
+        "type": "Produto atual",
+        "description": "Hub e vitrine dos jogos HTML criados pelos alunos: organização do projeto em tarefas e versões, feedback dos professores por rubrica e publicação para a comunidade jogar.",
+        "url": "https://idealabgames.web.app",
+        "logo": "assets/logos/idealabgames.svg"
+      },
+      {
+        "era": "Atual",
         "title": "Izicode RPG Maker",
         "org": "izicodeedurpg.vercel.app",
         "type": "Produto atual",
@@ -459,9 +477,9 @@
         "era": "Atual",
         "title": "WiW Speak",
         "org": "freehands.com.br",
-        "type": "Projeto open source",
-        "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade.",
-        "url": "https://learnfreehands.vercel.app",
+        "type": "Startup de alunos · mentoria",
+        "description": "Tradutor de Libras com IA e dispositivo vestível. Nasceu como projeto de alunos em sala de aula e virou startup, com os estudantes como cofundadores e mentoria e orientação de Rogério; em rodada pré-seed.",
+        "url": "https://freehands.com.br",
         "logo": "assets/logos/wiwspeak.png"
       },
       {
@@ -469,7 +487,7 @@
         "title": "Dpoint — Ponto de Campo",
         "org": "GitHub · rberlanda04/dpoint",
         "type": "Produto atual",
-        "description": "Sistema de registro de ponto para equipes em campo — manutenção, entregas, inspeção e consultoria fora do escritório.",
+        "description": "Controle de presença para equipes em campo — obras, manutenção, entregas e inspeção — com check-in por QR Code, validação por GPS, foto de evidência e painel multiempresa.",
         "url": "https://dpoint-d138c.web.app/",
         "logo": "assets/logos/dpoint.png"
       },
@@ -478,7 +496,7 @@
         "title": "Izicode Edu",
         "org": "izicode.com.br",
         "type": "Produto atual",
-        "description": "Robótica e inovação para escolas: cultura maker, STEAM e robótica integradas à BNCC, laboratórios maker e formação docente.",
+        "description": "Robótica e inovação para escolas: cultura maker, STEAM e robótica integradas à BNCC, laboratórios maker e formação docente. Plataforma com planos de aula por IA, Academia do Professor, biblioteca de roteiros e blog para professores.",
         "url": "https://izicode.com.br",
         "logo": "assets/logos/izicode.png"
       },
@@ -704,11 +722,11 @@
     "intro": "Trabalhos que saíram do papel: projetos desenvolvidos pelos próprios estudantes, do primeiro protótipo à apresentação final.",
     "items": [
       {
-        "title": "WiW Speak ",
-        "event": "Projeto próprio de acessibilidade",
-        "description": "Tradutor de Libras com IA e dispositivo vestível, com curso gamificado do alfabeto em Libras e foco em acessibilidade (HealthTech/EdTech).",
+        "title": "WiW Speak",
+        "event": "Startup de alunos · mentoria e orientação",
+        "description": "Tradutor de Libras com IA e dispositivo vestível (HealthTech/EdTech). Os alunos que construíram o protótipo são os cofundadores; a startup busca o primeiro investidor e se prepara para a FEBRACE e o MIT Solve.",
         "logo": "assets/logos/wiwspeak.png",
-        "url": "https://learnfreehands.vercel.app"
+        "url": "https://freehands.com.br"
       }
     ]
   },
