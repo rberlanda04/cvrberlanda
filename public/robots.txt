@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin
+Disallow: /admin.html
+Allow: /
+
+Sitemap: https://www.rberlanda.com.br/sitemap.xml
