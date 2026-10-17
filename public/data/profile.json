@@ -25,11 +25,6 @@
         "logo": "assets/logos/tool-linkedin.png"
       },
       {
-        "label": "Instagram",
-        "url": "",
-        "logo": "assets/logos/tool-instagram.svg"
-      },
-      {
         "label": "GitHub",
         "url": "https://github.com/rberlanda04",
         "logo": "assets/logos/tool-github.svg"
@@ -183,29 +178,29 @@
   },
   "githubAccounts": {
     "heading": "Código aberto",
-    "intro": "",
+    "intro": "As quatro contas onde fica o código: dos primeiros projetos aos produtos atuais.",
     "items": [
       {
         "label": "rberlanda01",
-        "description": "",
+        "description": "Primeiros projetos (2018–2019): DroneKids, modelo de currículo em React e testes com Raspberry Pi.",
         "url": "https://github.com/rberlanda01",
         "logo": "assets/logos/github-rberlanda01.png"
       },
       {
         "label": "izicripto",
-        "description": "",
+        "description": "Organização da Izicode: site izicode.com.br, sensores IziSens e projetos de blockchain e jogos.",
         "url": "https://github.com/izicripto",
         "logo": "assets/logos/github-izicripto.png"
       },
       {
         "label": "dbmox",
-        "description": "",
+        "description": "Servidor de roleplay (2020): base modificada e scripts do servidor dbmox.",
         "url": "https://github.com/dbmox",
         "logo": "assets/logos/github-dbmox.png"
       },
       {
         "label": "rberlanda04",
-        "description": "",
+        "description": "Projetos atuais: Q3 Orça, Beerlanda, este currículo e os sensores de ruído usados em sala de aula.",
         "url": "https://github.com/rberlanda04",
         "logo": "assets/logos/github-rberlanda04.png"
       }
@@ -440,10 +435,10 @@
       {
         "era": "Atual",
         "title": "Q3 Orça",
-        "org": "q3orca.web.app",
+        "org": "www.q3orca.com.br",
         "type": "Produto atual",
-        "description": "Orçamentos profissionais em 2 minutos para prestadores de serviço: monte pelo celular, envie pelo WhatsApp e receba por Pix. Plano grátis e plano Pro com a marca do profissional.",
-        "url": "https://q3orca.web.app",
+        "description": "Orçamentos profissionais em 2 minutos para prestadores de serviço: modelos prontos para 28 profissões, envio pelo WhatsApp, aprovação pelo link e recebimento por Pix. Plano grátis e plano Pro com a marca do profissional.",
+        "url": "https://www.q3orca.com.br",
         "logo": "assets/logos/q3orca.png"
       },
       {

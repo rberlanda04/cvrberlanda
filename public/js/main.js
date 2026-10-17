@@ -577,7 +577,7 @@ function renderImpactStats(data) {
       "div",
       "stat-tile is-featured",
       `
-      <span class="stat-count" data-target="${total}" data-suffix="">0</span>
+      <span class="stat-count" data-target="${total}" data-suffix="">${total}</span>
       <span class="stat-label">${label}</span>
     `
     );
@@ -594,7 +594,7 @@ function renderImpactStats(data) {
         "div",
         "stat-tile",
         `
-        <span class="stat-count" data-target="${target}" data-suffix="${suffix}">0${suffix}</span>
+        <span class="stat-count" data-target="${target}" data-suffix="${suffix}">${target}${suffix}</span>
         <span class="stat-label">${stat.label}</span>
       `
       );

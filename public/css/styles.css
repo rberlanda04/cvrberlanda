@@ -264,13 +264,13 @@ h1, h2, h3, p { margin: 0; }
 .hero { scroll-margin-top: 76px; }
 .section-alt { background: var(--bg-alt); }
 
-/* Aparece suavemente ao entrar na tela; sem sobressalto para quem prefere menos movimento */
+/* Desliza levemente ao entrar na tela, mas o conteúdo fica sempre visível: o Google, as prévias de
+   link, a impressão e quem não rola até o fim veem a página inteira, não um vazio. */
 .reveal {
-  opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: transform 0.5s ease;
 }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal.is-visible { transform: translateY(0); }
 
 /* Feedback tátil de clique nos elementos interativos */
 .btn:active,
