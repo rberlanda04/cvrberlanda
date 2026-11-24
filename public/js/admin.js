@@ -22,12 +22,7 @@ import {
   deleteDoc,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { imagemParaDataUrl } from "./imagem.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKzvn8KwLZz0oo0o_FP0NmMndIjuTjS8g",
@@ -40,7 +35,6 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
-const storage = getStorage(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 
 const ALLOWED_EMAIL = "r.berlanda04@gmail.com";
@@ -199,9 +193,11 @@ async function uploadIfNeeded(pathPrefix, existingUrl) {
   if (!file.type.startsWith("image/") || file.size > MAX_IMAGE_BYTES) {
     throw new Error("Escolha uma imagem (JPG, PNG ou WebP) de até 5MB.");
   }
-  const fileRef = ref(storage, `${pathPrefix}/${Date.now()}-${file.name}`);
-  await uploadBytes(fileRef, file);
-  return getDownloadURL(fileRef);
+  // Sem Firebase Storage (exige cobrança ativa): a imagem vai comprimida
+  // dentro do documento. Logo: 256 px; imagem de evento: 1200 px.
+  return pathPrefix === "eventImages"
+    ? imagemParaDataUrl(file, 1200, 700000)
+    : imagemParaDataUrl(file, 256, 150000);
 }
 
 /* ---------------------------------------------------------

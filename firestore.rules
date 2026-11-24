@@ -47,6 +47,7 @@ service cloud.firestore {
         && request.resource.data.name.size() < 200
         && request.resource.data.logo is string
         && request.resource.data.logo.size() > 0
+        && request.resource.data.logo.size() < 200000
         && request.resource.data.description is string
         && request.resource.data.description.size() > 0
         && request.resource.data.description.size() < 2000

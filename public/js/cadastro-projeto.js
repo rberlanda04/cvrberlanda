@@ -9,12 +9,7 @@ import {
   addDoc,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { imagemParaDataUrl } from "./imagem.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKzvn8KwLZz0oo0o_FP0NmMndIjuTjS8g",
@@ -26,7 +21,6 @@ const firebaseConfig = {
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
-const storage = getStorage(firebaseApp);
 
 const MAX_LOGO_BYTES = 5 * 1024 * 1024;
 
@@ -293,10 +287,8 @@ function init() {
     nextBtn.textContent = "Enviando imagem...";
     try {
       const file = fields[1].input.files[0];
-      const path = `projectLogos/${Date.now()}-${file.name}`;
-      const fileRef = ref(storage, path);
-      await uploadBytes(fileRef, file);
-      const logoUrl = await getDownloadURL(fileRef);
+      // Logo vai comprimida dentro do próprio documento (sem Firebase Storage).
+      const logoUrl = await imagemParaDataUrl(file, 256, 150000);
 
       nextBtn.textContent = "Enviando...";
       await addDoc(collection(db, "projectSubmissions"), {
