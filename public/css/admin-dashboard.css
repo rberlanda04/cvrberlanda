@@ -144,3 +144,15 @@
   border-radius: 8px; font-size: 0.8rem; line-height: 1.35;
   box-shadow: var(--shadow-md);
 }
+
+/* Layout do painel (ajuste de 24/11): conteúdo mais largo e alinhado com o
+   cabeçalho e as abas; os quadros antigos da visão geral ficam escondidos
+   (o dashboard já mostra esses números). */
+.admin-page { --container-w: 1400px; }
+.admin-overview[hidden] { display: none; }
+.admin-overview-wrap { padding-block: 1.25rem 0.25rem; }
+.admin-header,
+.admin-tabs { padding-inline: max(1.5rem, calc((100% - var(--container-w)) / 2 + 1.5rem)); }
+.admin-container { padding-block: 1.75rem 2.5rem; }
+.dash-grid-site { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+@media (max-width: 980px) { .dash-grid-site { grid-template-columns: minmax(0, 1fr); } }

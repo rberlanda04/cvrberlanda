@@ -257,15 +257,15 @@ function secaoSite(stats, mensagens, projetos, eventos) {
       ? `Últimos 30 dias · contagem diária desde ${primeiroDia.slice(6, 8)}/${primeiroDia.slice(4, 6)}`
       : "O contador diário começou agora: o gráfico enche a cada visita. O total acima vem do contador antigo.",
     colunas(dias.map((d) => ({ rotulo: d.rotulo, valor: d.valor })), { destaqueUltima: true, sufixo: " acessos", largura: 1100, altura: 220 }),
-    { largo: true, extra: tabela(["Dia", "Acessos"], dias.map((d) => [d.rotulo, d.valor])) }
+    { extra: tabela(["Dia", "Acessos"], dias.map((d) => [d.rotulo, d.valor])) }
   );
   const msgs = cartao(
     "Mensagens por mês",
     "Formulário de contato, últimos 12 meses",
-    colunas(meses.map((m) => ({ rotulo: rotuloMes(m), valor: msgPorMes.get(m) })), { serie: "s2", sufixo: " mensagens" }),
+    colunas(meses.map((m) => ({ rotulo: rotuloMes(m), valor: msgPorMes.get(m) })), { serie: "s2", sufixo: " mensagens", largura: 420, altura: 250 }),
     { extra: tabela(["Mês", "Mensagens"], meses.map((m) => [rotuloMes(m), msgPorMes.get(m)])) }
   );
-  return secao("Números do site", "dash-site", kpis + `<div class="dash-grid">${acessos}${msgs}</div>`, true);
+  return secao("Números do site", "dash-site", kpis + `<div class="dash-grid dash-grid-site">${acessos}${msgs}</div>`, true);
 }
 
 function secaoImpacto(perfil) {
