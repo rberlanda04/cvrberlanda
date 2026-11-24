@@ -200,7 +200,7 @@
       },
       {
         "label": "rberlanda04",
-        "description": "Projetos atuais: Q3 Orça, Beerlanda, este currículo e os sensores de ruído usados em sala de aula.",
+        "description": "Projetos atuais: Q3 Orça, GTA6VIU, Beerlanda, este currículo e os sensores de ruído usados em sala de aula.",
         "url": "https://github.com/rberlanda04",
         "logo": "assets/logos/github-rberlanda04.png"
       }
@@ -440,6 +440,15 @@
         "description": "Orçamentos profissionais em 2 minutos para prestadores de serviço: modelos prontos para 28 profissões, envio pelo WhatsApp, aprovação pelo link e recebimento por Pix. Plano grátis e plano Pro com a marca do profissional.",
         "url": "https://www.q3orca.com.br",
         "logo": "assets/logos/q3orca.png"
+      },
+      {
+        "era": "Atual",
+        "title": "GTA6VIU",
+        "org": "gta6viu.com.br",
+        "type": "Produto atual",
+        "description": "Perfil de fã com os lances mais absurdos das lives brasileiras de GTA 6: cortes verticais com legenda em PT-BR e crédito ao streamer, publicados no Instagram, YouTube Shorts, Facebook e TikTok por um agente de IA que roda 24 h, com curadoria e política de conteúdo.",
+        "url": "https://gta6viu.com.br",
+        "logo": "assets/logos/gta6viu.png"
       },
       {
         "era": "Atual",
