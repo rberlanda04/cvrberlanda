@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/admin-dashboard.css" />
   <script>
     document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light");
   </script>
@@ -42,10 +43,10 @@
 
       <div class="container admin-overview-wrap">
         <div class="admin-overview-head">
-          <span class="admin-overview-title">Visão geral</span>
+          <span class="admin-overview-title">Painel do currículo</span>
           <button type="button" class="wizard-nav-btn" id="refresh-overview-btn">↻ Atualizar</button>
         </div>
-        <div class="admin-overview" id="admin-overview">
+        <div class="admin-overview" id="admin-overview" hidden>
           <div class="stat-tile">
             <span class="stat-icon stat-icon-visits" aria-hidden="true">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" /></svg>
@@ -78,7 +79,11 @@
       </div>
 
       <nav class="admin-tabs" id="admin-tabs">
-        <button type="button" class="admin-tab" data-tab="projects" aria-selected="true">
+        <button type="button" class="admin-tab" data-tab="dashboard" aria-selected="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
+          Dashboard
+        </button>
+        <button type="button" class="admin-tab" data-tab="projects" aria-selected="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" /></svg>
           Portfólio
         </button>
@@ -93,7 +98,11 @@
       </nav>
 
       <div class="container admin-container">
-        <section class="admin-section" id="tab-projects">
+        <section class="admin-section" id="tab-dashboard">
+          <div class="dash-root" id="dash-root"></div>
+        </section>
+
+        <section class="admin-section" id="tab-projects" hidden>
           <div class="admin-section-head">
             <div>
               <h2 class="section-title">Portfólio de projetos</h2>

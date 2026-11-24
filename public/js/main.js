@@ -863,6 +863,10 @@ function setupRevealAnimations() {
 // valor arbitrário), então isso é só um contador, não dado sensível.
 function trackVisit() {
   setDoc(doc(db, "stats", "siteVisits"), { count: increment(1) }, { merge: true }).catch(() => {});
+  // Contador por dia (fuso de São Paulo), para o gráfico de acessos do
+  // painel. Mesmas regras: documento só com "count", subindo de 1 em 1.
+  const dia = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo" }).format(new Date()).replaceAll("-", "");
+  setDoc(doc(db, "stats", `d-${dia}`), { count: increment(1) }, { merge: true }).catch(() => {});
 }
 
 setupThemeToggle();

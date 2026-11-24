@@ -23,6 +23,7 @@ import {
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 import { imagemParaDataUrl } from "./imagem.js";
+import { renderDashboard } from "./admin-dashboard.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKzvn8KwLZz0oo0o_FP0NmMndIjuTjS8g",
@@ -588,7 +589,7 @@ async function loadVisitCount() {
 // vez, ao abrir o painel — não atualiza sozinha em tempo real. O botão
 // "Atualizar" busca tudo de novo sem precisar recarregar a página inteira.
 function refreshOverview() {
-  return Promise.all([loadVisitCount(), loadProjects(), loadEvents(), loadMessages()]);
+  return Promise.all([loadVisitCount(), loadProjects(), loadEvents(), loadMessages(), renderDashboard(db)]);
 }
 
 function showDashboard() {
